@@ -1,4 +1,4 @@
-package com.deye.demo.tcp.client;
+package com.deye.xl.tcp.client;
 
 
 import io.netty.bootstrap.Bootstrap;

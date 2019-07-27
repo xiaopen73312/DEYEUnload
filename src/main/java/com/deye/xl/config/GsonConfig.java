@@ -1,4 +1,4 @@
-package com.deye.demo.config;
+package com.deye.xl.config;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

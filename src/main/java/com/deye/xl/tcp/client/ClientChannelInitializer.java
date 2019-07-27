@@ -1,4 +1,4 @@
-package com.deye.demo.tcp.client;
+package com.deye.xl.tcp.client;
 
 
 import io.netty.channel.ChannelInitializer;
@@ -7,10 +7,9 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
 import io.netty.handler.timeout.IdleStateHandler;
+import java.util.concurrent.TimeUnit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import java.util.concurrent.TimeUnit;
 
 /**
  * description: 通道初始化，主要用于设置各种Handler author: date: 2018-11-28 14:55

@@ -1,4 +1,4 @@
-package com.deye.demo.constants;
+package com.deye.xl.constants;
 
 /**
  * @author Jackie.peng
@@ -14,11 +14,6 @@ public class URIEndpoints {
     public static final String GET_ALARM = "/getAlarm";
     public static final String GET_PROJECT = "/getProject";
     public static final String GET_PROJECT_LIST = "/getProjectList";
-    public static final String GET_Sensor_LIST = "/getSensorList";
-    public static final String GET_ALARM_LIST = "/getAlarmList";
-    public static final String GET_SensorData_LIST = "/getSensorDataList";
-    public static final String GET_SensorRecordData_LIST = "/getRecordSensorDataList";
-    public static final String GET_SensorCODEData_LIST = "/getSensorDataListByCode";
     public static final String GET_Capture = "/getCapture";
     public static final String YS = "/YS";
 
