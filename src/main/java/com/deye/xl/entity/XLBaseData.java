@@ -18,29 +18,29 @@ public class XLBaseData {
     BigDecimal rowId;
     String HxzFactory;
     String HxzId;
-    String UnloaderType;
-    String Weight1SetExist;
-    String Weight2SetExist;
-    String ObliguityXExist;
-    String ObliguityYExist;
-    String GPSExist;
-    String WirelessExist;
-    String Weight1Disabled;
-    String Weight2Disabled;
-    String ObliguityXDisabled;
-    String ObliguityYDisabled;
-    String WeightPreAlarmValue;
-    String ObliguityXPreAlarmValue;
-    String ObliguityYPreAlarmValue;
-    String BatteryPreAlarmValue;
-    String WeightAlarmValue;
-    String ObliguityXAlarmValue;
-    String ObliguityYAlarmValue;
-    String BatteryAlarmValue;
-    String Weight1Zero;
-    String Weight2Zero;
-    String ObliguityXZero;
-    String ObliguityYZero;
+    String UnloaderType;//卸料平台类型
+    String Weight1SetExist;//载重1检测功能配置
+    String Weight2SetExist;//载重2检测功能配置
+    String ObliguityXExist;//倾角X检测功能配置
+    String ObliguityYExist;//倾角y检测功能配置
+    String GPSExist;//GPS定位功能配置
+    String WirelessExist;//载重无线连接功能配置
+    String Weight1Disabled;//载重1检测功能禁用
+    String Weight2Disabled;//载重2检测功能禁用
+    String ObliguityXDisabled;//倾角X检测功能禁用
+    String ObliguityYDisabled;//倾角Y检测功能禁用
+    String WeightPreAlarmValue;//载重预警值
+    String ObliguityXPreAlarmValue;//倾角X预警值
+    String ObliguityYPreAlarmValue;//倾角Y预警值
+    String BatteryPreAlarmValue;//电池电量预警值
+    String WeightAlarmValue;//载重报警值
+    String ObliguityXAlarmValue;//倾角X报警值
+    String ObliguityYAlarmValue;//倾角X报警值
+    String BatteryAlarmValue;//倾角Y报警值
+    String Weight1Zero;//载重1零漂
+    String Weight2Zero;//载重2零漂
+    String ObliguityXZero;//倾角X零漂
+    String ObliguityYZero;//倾角Y零漂
 
     public BigDecimal getRowId() {
         return rowId;
