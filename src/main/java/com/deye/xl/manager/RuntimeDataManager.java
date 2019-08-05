@@ -1,7 +1,7 @@
-package com.deye.demo.manager;
+package com.deye.xl.manager;
 
-import com.deye.demo.entity.RuntimeData;
-import com.deye.demo.repo.RuntimeDataRepository;
+import com.deye.xl.entity.RuntimeData;
+import com.deye.xl.repo.RuntimeDataRepository;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -27,6 +27,7 @@ public class RuntimeDataManager {
         return runtimeDataRepository.getRuntimeDataByHxzFactory(hxzFactory, hxzId);
     }
 
+
     /**
      * 更新运行状态
      */
@@ -47,6 +48,22 @@ public class RuntimeDataManager {
      */
     @Transactional
     @Modifying
+    public void upXLRunTimeSql(String RTime, String HxzFactory, String HxzId) {
+        String sql =
+                "UPDATE RuntimeData"
+                        + "    set  RunTime=DATEDIFF(ss,OnlineTime,?) where    DownlineTime =' '  and HxzFactory= ? AND HxzId= ?  ";
+        Query query = entityManager.createNativeQuery(sql).setParameter(1, RTime)
+                .setParameter(2, HxzFactory)
+                .setParameter(3, HxzId);
+        query.executeUpdate();
+        entityManager.close();
+    }
+
+    /**
+     * 更新运行时间
+     */
+    @Transactional
+    @Modifying
     public void upRunTimeDataSql(String RTime, String HxzFactory, String HxzId) {
         String sql =
                 "UPDATE RuntimeData"
@@ -58,6 +75,7 @@ public class RuntimeDataManager {
         query.executeUpdate();
         entityManager.close();
     }
+
     /**
      * 更新运行时间
      */
@@ -87,6 +105,7 @@ public class RuntimeDataManager {
         query.executeUpdate();
         entityManager.close();
     }
+
     /**
      * 插入运行时长数据
      */

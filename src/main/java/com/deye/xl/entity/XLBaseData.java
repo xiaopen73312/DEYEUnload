@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "XL_AlarmData")
+@Table(name = "XL_BaseData")
 public class XLBaseData {
 
     @Id
@@ -36,11 +36,45 @@ public class XLBaseData {
     String WeightAlarmValue;//载重报警值
     String ObliguityXAlarmValue;//倾角X报警值
     String ObliguityYAlarmValue;//倾角X报警值
-    String BatteryAlarmValue;//倾角Y报警值
+    String BatteryAlarmValue;//电池电量预警值
     String Weight1Zero;//载重1零漂
     String Weight2Zero;//载重2零漂
     String ObliguityXZero;//倾角X零漂
     String ObliguityYZero;//倾角Y零漂
+
+    public XLBaseData() {
+    }
+
+    public XLBaseData(String hxzFactory, String hxzId, String unloaderType,
+            String weight1SetExist, String weight2SetExist, String obliguityXExist,
+            String obliguityYExist, String GPSExist, String wirelessExist,
+            String weight1Disabled, String weight2Disabled, String obliguityXDisabled,
+            String obliguityYDisabled, String weightPreAlarmValue,
+            String obliguityXPreAlarmValue, String obliguityYPreAlarmValue,
+            String batteryPreAlarmValue, String weightAlarmValue, String obliguityXAlarmValue,
+            String obliguityYAlarmValue, String batteryAlarmValue) {
+        HxzFactory = hxzFactory;
+        HxzId = hxzId;
+        UnloaderType = unloaderType;
+        Weight1SetExist = weight1SetExist;
+        Weight2SetExist = weight2SetExist;
+        ObliguityXExist = obliguityXExist;
+        ObliguityYExist = obliguityYExist;
+        this.GPSExist = GPSExist;
+        WirelessExist = wirelessExist;
+        Weight1Disabled = weight1Disabled;
+        Weight2Disabled = weight2Disabled;
+        ObliguityXDisabled = obliguityXDisabled;
+        ObliguityYDisabled = obliguityYDisabled;
+        WeightPreAlarmValue = weightPreAlarmValue;
+        ObliguityXPreAlarmValue = obliguityXPreAlarmValue;
+        ObliguityYPreAlarmValue = obliguityYPreAlarmValue;
+        BatteryPreAlarmValue = batteryPreAlarmValue;
+        WeightAlarmValue = weightAlarmValue;
+        ObliguityXAlarmValue = obliguityXAlarmValue;
+        ObliguityYAlarmValue = obliguityYAlarmValue;
+        BatteryAlarmValue = batteryAlarmValue;
+    }
 
     public BigDecimal getRowId() {
         return rowId;

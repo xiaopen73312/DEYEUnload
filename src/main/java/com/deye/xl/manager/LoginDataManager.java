@@ -1,8 +1,8 @@
-package com.deye.demo.manager;
+package com.deye.xl.manager;
 
 
-import com.deye.demo.entity.LoginData;
-import com.deye.demo.repo.LoginDataRepository;
+import com.deye.xl.entity.LoginData;
+import com.deye.xl.repo.LoginDataRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

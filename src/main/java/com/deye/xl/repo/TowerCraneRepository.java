@@ -1,7 +1,7 @@
-package com.deye.demo.repo;
+package com.deye.xl.repo;
 
 
-import com.deye.demo.entity.TowerCrane;
+import com.deye.xl.entity.TowerCrane;
 import java.math.BigDecimal;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

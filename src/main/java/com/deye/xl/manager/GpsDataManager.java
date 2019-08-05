@@ -1,7 +1,7 @@
-package com.deye.demo.manager;
+package com.deye.xl.manager;
 
-import com.deye.demo.entity.GpsData;
-import com.deye.demo.repo.GpsDataRepository;
+import com.deye.xl.entity.GpsData;
+import com.deye.xl.repo.GpsDataRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

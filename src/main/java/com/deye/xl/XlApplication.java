@@ -1,5 +1,6 @@
 package com.deye.xl;
 
+import com.deye.xl.manager.SetOnlineManager;
 import com.deye.xl.tcp.server.NettyTcpServer;
 import io.netty.channel.ChannelFuture;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,14 +17,15 @@ public class XlApplication implements CommandLineRunner {
 
     @Autowired
     NettyTcpServer nettyTcpServer;
-
+    @Autowired
+    SetOnlineManager setOnlineManager;
     public static void main(String[] args) {
         SpringApplication.run(XlApplication.class, args);
     }
 
     @Override
     public void run(String... args) throws Exception {
-
+        setOnlineManager.setALLDownline();
         //启动服务端
         ChannelFuture start = nettyTcpServer.start();
         start.isDone();//是否完成

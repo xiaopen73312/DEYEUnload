@@ -1,4 +1,4 @@
-package com.deye.demo.entity;
+package com.deye.xl.entity;
 
 import java.math.BigDecimal;
 import javax.persistence.Column;
@@ -26,6 +26,18 @@ public class RuntimeData {
     String DownlineTime; //下线时间
     @Column(name = "RunTime")
     String RunTime; //运行时长
+
+    public RuntimeData() {
+    }
+
+    public RuntimeData(String hxzFactory, String hxzId, String onlineTime,
+            String downlineTime, String runTime) {
+        this.hxzFactory = hxzFactory;
+        this.hxzId = hxzId;
+        OnlineTime = onlineTime;
+        DownlineTime = downlineTime;
+        RunTime = runTime;
+    }
 
     public BigDecimal getRowId() {
         return rowId;

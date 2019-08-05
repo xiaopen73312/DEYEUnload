@@ -1,4 +1,4 @@
-package com.deye.demo.config;
+package com.deye.xl.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.lang.reflect.Field;
@@ -42,6 +42,7 @@ public class RestTemplateConfig {
     private String poolMaxTotal;
     @Autowired
     private ObjectMapper objectMapper;
+
     @Bean
     public ClientHttpRequestFactory httpRequestFactory() {
         HttpComponentsClientHttpRequestFactory factory =

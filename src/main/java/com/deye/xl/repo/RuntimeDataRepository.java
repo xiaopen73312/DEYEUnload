@@ -1,15 +1,14 @@
-package com.deye.demo.repo;
+package com.deye.xl.repo;
 
 
-import com.deye.demo.entity.RuntimeData;
+import com.deye.xl.entity.RuntimeData;
+import java.math.BigDecimal;
+import javax.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-
-import javax.transaction.Transactional;
-import java.math.BigDecimal;
 
 @Repository
 public interface RuntimeDataRepository extends JpaRepository<RuntimeData, BigDecimal> {

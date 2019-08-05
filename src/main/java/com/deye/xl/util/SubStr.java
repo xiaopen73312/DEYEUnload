@@ -1,4 +1,4 @@
-package com.deye.demo.util;
+package com.deye.xl.util;
 
 public class SubStr {
 

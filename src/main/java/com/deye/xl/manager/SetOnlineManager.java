@@ -1,8 +1,9 @@
-package com.deye.demo.manager;
+package com.deye.xl.manager;
 
-import com.deye.demo.entity.LoginData;
-import com.deye.demo.util.DateUtils;
-import com.deye.demo.util.NullUtil;
+
+import com.deye.xl.entity.LoginData;
+import com.deye.xl.util.DateUtils;
+import com.deye.xl.util.NullUtil;
 import java.util.Date;
 import java.util.List;
 import org.slf4j.Logger;

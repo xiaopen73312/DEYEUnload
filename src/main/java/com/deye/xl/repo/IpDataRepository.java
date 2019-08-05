@@ -1,6 +1,6 @@
-package com.deye.demo.repo;
+package com.deye.xl.repo;
 
-import com.deye.demo.entity.IpData;
+import com.deye.xl.entity.IpData;
 import java.math.BigDecimal;
 import java.util.List;
 import javax.transaction.Transactional;

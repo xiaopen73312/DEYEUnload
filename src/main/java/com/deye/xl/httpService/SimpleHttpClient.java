@@ -1,4 +1,4 @@
-package com.deye.demo.httpService;
+package com.deye.xl.httpService;
 
 import com.alibaba.fastjson.JSONObject;
 import java.nio.charset.StandardCharsets;
@@ -51,6 +51,7 @@ public class SimpleHttpClient {
                 HttpMethod.POST, entity, JSONObject.class);
         return exchange.getBody().toString();
     }
+
     public ResponseEntity<String> exchange(String requestJson,
             String url,
             HttpHeaders headers,

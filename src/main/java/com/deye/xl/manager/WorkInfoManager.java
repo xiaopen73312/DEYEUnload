@@ -1,7 +1,7 @@
-package com.deye.demo.manager;
+package com.deye.xl.manager;
 
-import com.deye.demo.entity.WorkInfo;
-import com.deye.demo.repo.WorkInfoRepository;
+import com.deye.xl.entity.WorkInfo;
+import com.deye.xl.repo.WorkInfoRepository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -17,6 +17,7 @@ public class WorkInfoManager {
     WorkInfoRepository workInfoRepository;
     @PersistenceContext //注入的是实体管理器,执行持久化操作
     private EntityManager entityManager;
+
     public WorkInfo getWorkInfoByHxzFactory(String hxzFactory,
             String hxzId, String OnlineTime) {
         return workInfoRepository.getWorkInfoByHxzFactory(hxzFactory, hxzId, OnlineTime);
@@ -26,6 +27,7 @@ public class WorkInfoManager {
             String hxzId, String OnlineTime) {
         return workInfoRepository.getTowerCrane_CraneId(hxzFactory, hxzId, OnlineTime);
     }
+
     public void save(WorkInfo workInfo) {
         workInfoRepository.save(workInfo);
     }

@@ -1,35 +1,29 @@
-package com.deye.demo.httpService;
+package com.deye.xl.httpService;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UserClient extends SimpleHttpClient {
+public class BaiduClient extends SimpleHttpClient {
 
-    public String gettmpstr(String Latitude, String Longitude) throws Exception {
-        String URL = "http://api.map.baidu.com/ag/coord/convert?from=0&to=4&mode=1&x=" + Longitude
-                + "&y=" + Latitude;
+    private static final Logger log = LoggerFactory.getLogger(BaiduClient.class);
 
-        String entityBody = simpleGet(URL);
+    public String gettmpstr(String Latitude, String Longitude) {
+        try {
+            String URL =
+                    "http://api.map.baidu.com/ag/coord/convert?from=0&to=4&mode=1&x=" + Longitude
+                            + "&y=" + Latitude;
 
-        return entityBody;
+            String entityBody = simpleGet(URL);
+            log.info("getUrl={}", URL);
+            log.info("entityBody={}", entityBody);
+            return entityBody;
+        } catch (Exception e) {
+            log.error("getUrl Exception={}", e);
+            return "";
+        }
+
     }
 
-//
-//    public String tett() throws Exception {
-//        String url = "http://47.97.251.253:5000/mint/v1/device/Push/factory/login";
-//        JSONObject gjson = new JSONObject();
-//        gjson.put("account", "MintFactory");
-//        gjson.put("password", "MintFactory123456");
-//        String jsonstr = gjson.toJSONString();
-//        try {
-//            String responseEntity = this.simplePost(jsonstr, url);
-//            JSONArray jsonArray = JSONArray.parseArray(responseEntity);
-//            JSONObject tmpstrsonObject = jsonArray.getJSONObject(0);
-//            String data = tmpstrsonObject.getString("data");
-//            return data;
-//        } catch (Exception e) {
-//
-//            return null;
-//        }
-//    }
 }

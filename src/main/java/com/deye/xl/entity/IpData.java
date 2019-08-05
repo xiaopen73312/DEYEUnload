@@ -1,4 +1,4 @@
-package com.deye.demo.entity;
+package com.deye.xl.entity;
 
 import java.math.BigDecimal;
 import javax.persistence.Column;

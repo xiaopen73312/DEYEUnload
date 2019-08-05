@@ -1,8 +1,8 @@
-package com.deye.demo.manager;
+package com.deye.xl.manager;
 
-import com.deye.demo.entity.IpData;
-import com.deye.demo.repo.IpDataRepository;
-import com.deye.demo.util.DateUtils;
+import com.deye.xl.entity.IpData;
+import com.deye.xl.repo.IpDataRepository;
+import com.deye.xl.util.DateUtils;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

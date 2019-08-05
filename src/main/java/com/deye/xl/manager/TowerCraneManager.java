@@ -1,8 +1,8 @@
-package com.deye.demo.manager;
+package com.deye.xl.manager;
 
 
-import com.deye.demo.entity.TowerCrane;
-import com.deye.demo.repo.TowerCraneRepository;
+import com.deye.xl.entity.TowerCrane;
+import com.deye.xl.repo.TowerCraneRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

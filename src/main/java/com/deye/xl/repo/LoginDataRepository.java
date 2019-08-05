@@ -1,6 +1,6 @@
-package com.deye.demo.repo;
+package com.deye.xl.repo;
 
-import com.deye.demo.entity.LoginData;
+import com.deye.xl.entity.LoginData;
 import java.math.BigDecimal;
 import java.util.List;
 import javax.transaction.Transactional;
@@ -18,7 +18,7 @@ public interface LoginDataRepository extends JpaRepository<LoginData, BigDecimal
     String getOnLine(@Param("hxzFactory") String hxzFactory,
             @Param("hxzId") String hxzId);
 
-    @Query(value = "SELECT  *  FROM LoginData where OnLine='1'", nativeQuery = true)
+    @Query(value = "SELECT  *  FROM LoginData where OnLine='1' and    Type='4' ", nativeQuery = true)
     List<LoginData> getAllOnLine();
 
     @Query(value = "SELECT *  FROM LoginData where  HxzFactory=:hxzFactory and HxzId=:hxzId", nativeQuery = true)

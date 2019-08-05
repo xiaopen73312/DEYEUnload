@@ -1,6 +1,6 @@
-package com.deye.demo.repo;
+package com.deye.xl.repo;
 
-import com.deye.demo.entity.GpsData;
+import com.deye.xl.entity.GpsData;
 import java.math.BigDecimal;
 import javax.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
