@@ -1,4 +1,4 @@
-package com.deye.demo.httpService;
+package com.deye.xl.httpService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,6 +25,7 @@ public class DeyeClinet {
     private String appid;
     @Value("${deye.appsecret}")
     private String appsecret;
+
     public String postCustomerAPI(String requestJson, String apiUrl)
             throws Exception {
 

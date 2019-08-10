@@ -1,14 +1,12 @@
-package com.deye.demo.postBody;
+package com.deye.xl.postBody;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.deye.demo.entity.AlarmDataElevator;
-import com.deye.demo.entity.BaseDataElevator;
-import com.deye.demo.entity.RealtimeDataElevator;
-import com.deye.demo.entity.WorkDataElevator;
-import com.deye.demo.httpService.DeyeClinet;
-import com.deye.demo.request.AlarmChangeRequest;
-import com.deye.demo.response.PostResponse;
+import com.deye.xl.entity.XLAlarmData;
+import com.deye.xl.entity.XLAlarmDataStart;
+import com.deye.xl.entity.XLBaseData;
+import com.deye.xl.entity.XLRealtimeData;
+import com.deye.xl.httpService.DeyeClinet;
 import com.google.gson.Gson;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,12 +14,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
- * 升降机通用接口POST
+ * 卸料通用接口POST
  */
 @Component
-public class DEYEPostSJJ {
+public class DEYEPost {
 
-    private static final Logger log = LoggerFactory.getLogger(DEYEPostSJJ.class);
+    private static final Logger log = LoggerFactory.getLogger(DEYEPost.class);
     @Autowired
     DeyeClinet deyeClinet;
     @Autowired
@@ -30,7 +28,7 @@ public class DEYEPostSJJ {
     /**
      * 上报注册信息
      */
-    public void postLoginDataElevator(String HxzFactory, String HxzId,
+    public void LoginDataUnloadingPlatform(String HxzFactory, String HxzId,
             String HardwareVer, String SoftwareVer, String SimCardNo, String Type)
             throws Exception {
 
@@ -44,7 +42,7 @@ public class DEYEPostSJJ {
 //        gjson.put("id", id);//设备唯一id
         String str = gjson.toJSONString();
         try {
-            String strReturn = deyeClinet.postCustomerAPI(str, "/zhgd/LoginDataElevator");
+            String strReturn = deyeClinet.postCustomerAPI(str, "/zhgd/LoginDataUnloadingPlatform");
 //            PostResponse postResponse = gson.fromJson(strReturn, PostResponse.class);
 //            String status = postResponse.getStatus();
         } catch (Exception e) {
@@ -57,7 +55,7 @@ public class DEYEPostSJJ {
     /**
      * 上报升降机基础参数
      */
-    public void BaseDataElevator(BaseDataElevator baseDataCrane) {
+    public void BaseDataUnloadingPlatform(XLBaseData baseDataCrane) {
         String str = gson.toJson(baseDataCrane);
         JSONObject tmpstrsonObject = JSONArray.parseObject(str);
         String ElevatorType = tmpstrsonObject.getString("CraneType");
@@ -66,9 +64,9 @@ public class DEYEPostSJJ {
 
         str = tmpstrsonObject.toString();
         try {
-            String strReturn = deyeClinet.postCustomerAPI(str, "/zhgd/BaseDataElevator");
-            PostResponse postResponse = gson.fromJson(strReturn, PostResponse.class);
-            String status = postResponse.getStatus();
+            String strReturn = deyeClinet.postCustomerAPI(str, "/zhgd/BaseDataUnloadingPlatform");
+//            PostResponse postResponse = gson.fromJson(strReturn, PostResponse.class);
+//            String status = postResponse.getStatus();
         } catch (Exception e) {
             log.error(e.getMessage());
         }
@@ -77,15 +75,16 @@ public class DEYEPostSJJ {
     /**
      * 上报升降机实时数据
      */
-    public void RealtimeDataElevator(RealtimeDataElevator realtimeDataElevator) {
-        String str = gson.toJson(realtimeDataElevator);
+    public void RealtimeDataElevator(XLRealtimeData xlRealtimeData) {
+        String str = gson.toJson(xlRealtimeData);
         JSONObject tmpstrsonObject = JSONArray.parseObject(str);
         tmpstrsonObject.remove("rowId");
         str = tmpstrsonObject.toString();
         try {
-            String strReturn = deyeClinet.postCustomerAPI(str, "/zhgd/RealtimeDataElevator");
-            PostResponse postResponse = gson.fromJson(strReturn, PostResponse.class);
-            String status = postResponse.getStatus();
+            String strReturn = deyeClinet
+                    .postCustomerAPI(str, "/zhgd/RealtimeDataUnloadingPlatform");
+//            PostResponse postResponse = gson.fromJson(strReturn, PostResponse.class);
+//            String status = postResponse.getStatus();
         } catch (Exception e) {
             log.error(e.getMessage());
         }
@@ -103,8 +102,8 @@ public class DEYEPostSJJ {
         String str = gjson.toJSONString();
         try {
             String strReturn = deyeClinet.postCustomerAPI(str, "/zhgd/GpsData");
-            PostResponse postResponse = gson.fromJson(strReturn, PostResponse.class);
-            String status = postResponse.getStatus();
+//            PostResponse postResponse = gson.fromJson(strReturn, PostResponse.class);
+//            String status = postResponse.getStatus();
         } catch (Exception e) {
             log.error(e.getMessage());
         }
@@ -124,42 +123,42 @@ public class DEYEPostSJJ {
         String str = gjson.toJSONString();
         try {
             String strReturn = deyeClinet.postCustomerAPI(str, "/zhgd/RuntimeData");
-            PostResponse postResponse = gson.fromJson(strReturn, PostResponse.class);
-            String status = postResponse.getStatus();
+//            PostResponse postResponse = gson.fromJson(strReturn, PostResponse.class);
+//            String status = postResponse.getStatus();
         } catch (Exception e) {
             log.error(e.getMessage());
         }
     }
 
-    /**
-     * 上报 工作循环
-     */
-    public void WorkDataElevator(WorkDataElevator workDataCrane) {
-        String str = gson.toJson(workDataCrane);
-        JSONObject tmpstrsonObject = JSONArray.parseObject(str);
-        tmpstrsonObject.remove("rowId");
-        str = tmpstrsonObject.toString();
-        try {
-            String strReturn = deyeClinet.postCustomerAPI(str, "/zhgd/WorkDataElevator");
-            PostResponse postResponse = gson.fromJson(strReturn, PostResponse.class);
-            String status = postResponse.getStatus();
-        } catch (Exception e) {
-            log.error(e.getMessage());
-        }
-    }
+//    /**
+//     * 上报 工作循环
+//     */
+//    public void WorkDataElevator(WorkDataElevator workDataCrane) {
+//        String str = gson.toJson(workDataCrane);
+//        JSONObject tmpstrsonObject = JSONArray.parseObject(str);
+//        tmpstrsonObject.remove("rowId");
+//        str = tmpstrsonObject.toString();
+//        try {
+//            String strReturn = deyeClinet.postCustomerAPI(str, "/zhgd/WorkDataElevator");
+////            PostResponse postResponse = gson.fromJson(strReturn, PostResponse.class);
+////            String status = postResponse.getStatus();
+//        } catch (Exception e) {
+//            log.error(e.getMessage());
+//        }
+//    }
 
     /**
      * 上报 报警
      */
-    public void AlarmDataElevator(AlarmDataElevator alarmDataElevator) {
-        String str = gson.toJson(alarmDataElevator);
+    public void AlarmDataElevator(XLAlarmData xlAlarmData) {
+        String str = gson.toJson(xlAlarmData);
         JSONObject tmpstrsonObject = JSONArray.parseObject(str);
         tmpstrsonObject.remove("rowId");
         str = tmpstrsonObject.toString();
         try {
-            String strReturn = deyeClinet.postCustomerAPI(str, "/zhgd/AlarmDataElevator");
-            PostResponse postResponse = gson.fromJson(strReturn, PostResponse.class);
-            String status = postResponse.getStatus();
+            String strReturn = deyeClinet.postCustomerAPI(str, "/zhgd/AlarmDataUnloadingPlatform");
+//            PostResponse postResponse = gson.fromJson(strReturn, PostResponse.class);
+//            String status = postResponse.getStatus();
         } catch (Exception e) {
             log.error(e.getMessage());
         }
@@ -182,8 +181,8 @@ public class DEYEPostSJJ {
         String str = gjson.toJSONString();
         try {
             String strReturn = deyeClinet.postCustomerAPI(str, "/zhgd/OperatorRecord");
-            PostResponse postResponse = gson.fromJson(strReturn, PostResponse.class);
-            String status = postResponse.getStatus();
+//            PostResponse postResponse = gson.fromJson(strReturn, PostResponse.class);
+//            String status = postResponse.getStatus();
         } catch (Exception e) {
             log.error(e.getMessage());
         }
@@ -208,25 +207,25 @@ public class DEYEPostSJJ {
         String str = gjson.toJSONString();
         try {
             String strReturn = deyeClinet.postCustomerAPI(str, "/zhgd/HeartBeatDataCrane");
-            PostResponse postResponse = gson.fromJson(strReturn, PostResponse.class);
-            String status = postResponse.getStatus();
+//            PostResponse postResponse = gson.fromJson(strReturn, PostResponse.class);
+//            String status = postResponse.getStatus();
         } catch (Exception e) {
             log.error(e.getMessage());
         }
     }
 
     /**
-     * 上报报警状态改变数据
+     * 2.7	上报报警时刻数据
      */
-    public void AlarmChangeDataCrane(AlarmChangeRequest alarmChangeRequest) {
-        String str = gson.toJson(alarmChangeRequest);
+    public void AlarmStartUnloadingPlatform(XLAlarmDataStart xlAlarmDataStart) {
+        String str = gson.toJson(xlAlarmDataStart);
         JSONObject tmpstrsonObject = JSONArray.parseObject(str);
         tmpstrsonObject.remove("rowId");
         str = tmpstrsonObject.toString();
         try {
-            String strReturn = deyeClinet.postCustomerAPI(str, "/zhgd/AlarmChangeDataCrane");
-            PostResponse postResponse = gson.fromJson(strReturn, PostResponse.class);
-            String status = postResponse.getStatus();
+            String strReturn = deyeClinet.postCustomerAPI(str, "/zhgd/AlarmStartUnloadingPlatform");
+//            PostResponse postResponse = gson.fromJson(strReturn, PostResponse.class);
+//            String status = postResponse.getStatus();
         } catch (Exception e) {
             log.error(e.getMessage());
         }
