@@ -24,5 +24,21 @@ public class SubStr {
         return strs[0] + '.' + strs[1] + '.' + strs[2] + '.' + strs[3];
     }
 
+    public static String getStr(String str) {
+        Float strInt = Float.valueOf(str) * 100;
+//        strInt.intValue();
+        str = String.valueOf(strInt.intValue());
+        String reStr = str;
+        if (reStr.length() == 1) {
+            reStr = "00" + reStr;
+
+        }
+        if (reStr.length() == 2) {
+            reStr = "0" + reStr;
+
+        }
+
+        return reStr;
+    }
 
 }

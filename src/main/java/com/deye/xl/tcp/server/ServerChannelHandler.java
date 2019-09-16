@@ -131,11 +131,11 @@ public class ServerChannelHandler extends SimpleChannelInboundHandler<Object> {
                             strings[5], strings[6], strings[7],
                             strings[8], strings[9], strings[10],
                             strings[11], strings[12], strings[13],
-                            strings[14], strings[15], Float.valueOf(strings[16]),
-                            Float.valueOf(strings[17]), Float.valueOf(strings[18]),
-                            Integer.valueOf(strings[19]), Float.valueOf(strings[20]),
-                            Float.valueOf(strings[21]),
-                            Float.valueOf(strings[22]), Integer.valueOf(strings[23]), strings[24],
+                            strings[14], strings[15], strings[16],
+                            strings[17], strings[18],
+                            Integer.valueOf(strings[19]), strings[20],
+                            strings[21],
+                            strings[22], Integer.valueOf(strings[23]), strings[24],
                             strings[25], strings[26]);
                     //根据黑匣子查询 ip数据是否存在
                     chackIpData(HxzFactory, HxzId, clientIP);
@@ -152,13 +152,13 @@ public class ServerChannelHandler extends SimpleChannelInboundHandler<Object> {
                                 xlRegisterRequest.getWeight2Disabled(),
                                 xlRegisterRequest.getObliguityXDisabled(),
                                 xlRegisterRequest.getObliguityYDisabled(),
-                                xlRegisterRequest.getWeightPreAlarmValue().toString().trim(),
-                                xlRegisterRequest.getObliguityXPreAlarmValue().toString().trim(),
-                                xlRegisterRequest.getObliguityYPreAlarmValue().toString().trim(),
+                                xlRegisterRequest.getWeightPreAlarmValue().trim(),
+                                xlRegisterRequest.getObliguityXPreAlarmValue().trim(),
+                                xlRegisterRequest.getObliguityYPreAlarmValue().trim(),
                                 xlRegisterRequest.getBatteryPreAlarmValue().toString().trim(),
-                                xlRegisterRequest.getWeightAlarmValue().toString().trim(),
-                                xlRegisterRequest.getObliguityXAlarmValue().toString().trim(),
-                                xlRegisterRequest.getObliguityYAlarmValue().toString().trim(),
+                                xlRegisterRequest.getWeightAlarmValue().trim(),
+                                xlRegisterRequest.getObliguityXAlarmValue().trim(),
+                                xlRegisterRequest.getObliguityYAlarmValue().trim(),
                                 xlRegisterRequest.getBatteryAlarmValue().toString().trim());
                         XLBaseData xlBaseData = xlBaseDataManager.getEntity(HxzFactory, HxzId);
                         log.info("getXLbaseDate by HxzFactory={}  HxzId={}", HxzFactory, HxzId);
@@ -280,19 +280,30 @@ public class ServerChannelHandler extends SimpleChannelInboundHandler<Object> {
                                             + xlRegisterRequest.getWeight2Disabled() + "$"
                                             + xlRegisterRequest.getObliguityXDisabled() + "$"
                                             + xlRegisterRequest.getObliguityYDisabled() + "$"
-                                            + xlRegisterRequest.getWeightPreAlarmValue() + "$"
-                                            + xlRegisterRequest.getObliguityXPreAlarmValue() + "$"
-                                            + xlRegisterRequest.getObliguityYPreAlarmValue() + "$"
+                                            + SubStr
+                                            .getStr(xlRegisterRequest.getWeightPreAlarmValue())
+                                            + "$"
+                                            + SubStr
+                                            .getStr(xlRegisterRequest.getObliguityXPreAlarmValue())
+                                            + "$"
+                                            + SubStr
+                                            .getStr(xlRegisterRequest.getObliguityYPreAlarmValue())
+                                            + "$"
                                             + xlRegisterRequest.getBatteryPreAlarmValue() + "$"
-                                            + xlRegisterRequest.getWeightAlarmValue() + "$"
-                                            + xlRegisterRequest.getObliguityXAlarmValue() + "$"
-                                            + xlRegisterRequest.getObliguityYAlarmValue() + "$"
+                                            + SubStr.getStr(xlRegisterRequest.getWeightAlarmValue())
+                                            + "$"
+                                            + SubStr
+                                            .getStr(xlRegisterRequest.getObliguityXAlarmValue())
+                                            + "$"
+                                            + SubStr
+                                            .getStr(xlRegisterRequest.getObliguityYAlarmValue())
+                                            + "$"
                                             + xlRegisterRequest.getBatteryAlarmValue() + "$"
                                             + HeartBeatInterval + "$" + WorkInterval + "$"
                                             + NoWorkInterval + "$"
                                             + DateUtils.getYearStr() + "$"
                                             + DateUtils.getMonthStr() + "$" + DateUtils.getDayStr()
-                                            + "$"
+
                                             + "$" + DateUtils.getHHStr() + "$" + DateUtils
                                             .getMMStr() + "$"
                                             + DateUtils.getSSStr() + "$" + ReturnServerIp + "$"
@@ -438,7 +449,7 @@ public class ServerChannelHandler extends SimpleChannelInboundHandler<Object> {
                                         + DateUtils.getYearStr() + "$"
                                         + DateUtils.getMonthStr() + "$" + DateUtils
                                         .getDayStr()
-                                        + "$"
+
                                         + "$" + DateUtils.getHHStr() + "$" + DateUtils
                                         .getMMStr() + "$"
                                         + DateUtils.getSSStr() + "$";

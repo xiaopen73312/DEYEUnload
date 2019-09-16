@@ -20,13 +20,13 @@ public class XLRegisterRequest {
     String Weight2Disabled;//载重2检测功能禁用
     String ObliguityXDisabled;//倾角X检测功能禁用
     String ObliguityYDisabled;//倾角Y检测功能禁用
-    Float WeightPreAlarmValue;//float【2.00】//载重预警值
-    Float ObliguityXPreAlarmValue;//float【2.00】//倾角X预警值
-    Float ObliguityYPreAlarmValue;//float【2.00】//倾角Y预警值
+    String WeightPreAlarmValue;//String【2.00】//载重预警值
+    String ObliguityXPreAlarmValue;//String【2.00】//倾角X预警值
+    String ObliguityYPreAlarmValue;//String【2.00】//倾角Y预警值
     Integer BatteryPreAlarmValue;//电池电量预警值
-    Float WeightAlarmValue;//载重报警值
-    Float ObliguityXAlarmValue;//倾角X报警值
-    Float ObliguityYAlarmValue;//倾角Y报警值
+    String WeightAlarmValue;//载重报警值
+    String ObliguityXAlarmValue;//倾角X报警值
+    String ObliguityYAlarmValue;//倾角Y报警值
     Integer BatteryAlarmValue;//电池电量报警值
     String HardwareVer;//硬件版本号 DYL-I-TC-H-V2.00
     String SoftwareVer;//软件版本号 DYL-I-TC-S-V4.10
@@ -39,10 +39,10 @@ public class XLRegisterRequest {
             String unloaderType, String weight1SetExist, String weight2SetExist,
             String obliguityXExist, String obliguityYExist, String GPSExist,
             String wirelessExist, String weight1Disabled, String weight2Disabled,
-            String obliguityXDisabled, String obliguityYDisabled, Float weightPreAlarmValue,
-            Float obliguityXPreAlarmValue, Float obliguityYPreAlarmValue,
-            Integer batteryPreAlarmValue, Float weightAlarmValue, Float obliguityXAlarmValue,
-            Float obliguityYAlarmValue, Integer batteryAlarmValue, String hardwareVer,
+            String obliguityXDisabled, String obliguityYDisabled, String weightPreAlarmValue,
+            String obliguityXPreAlarmValue, String obliguityYPreAlarmValue,
+            Integer batteryPreAlarmValue, String weightAlarmValue, String obliguityXAlarmValue,
+            String obliguityYAlarmValue, Integer batteryAlarmValue, String hardwareVer,
             String softwareVer, String simCardNo) {
         this.hxzFactory = hxzFactory;
         this.hxzId = hxzId;
@@ -192,27 +192,27 @@ public class XLRegisterRequest {
         ObliguityYDisabled = obliguityYDisabled;
     }
 
-    public Float getWeightPreAlarmValue() {
+    public String getWeightPreAlarmValue() {
         return WeightPreAlarmValue;
     }
 
-    public void setWeightPreAlarmValue(Float weightPreAlarmValue) {
+    public void setWeightPreAlarmValue(String weightPreAlarmValue) {
         WeightPreAlarmValue = weightPreAlarmValue;
     }
 
-    public Float getObliguityXPreAlarmValue() {
+    public String getObliguityXPreAlarmValue() {
         return ObliguityXPreAlarmValue;
     }
 
-    public void setObliguityXPreAlarmValue(Float obliguityXPreAlarmValue) {
+    public void setObliguityXPreAlarmValue(String obliguityXPreAlarmValue) {
         ObliguityXPreAlarmValue = obliguityXPreAlarmValue;
     }
 
-    public Float getObliguityYPreAlarmValue() {
+    public String getObliguityYPreAlarmValue() {
         return ObliguityYPreAlarmValue;
     }
 
-    public void setObliguityYPreAlarmValue(Float obliguityYPreAlarmValue) {
+    public void setObliguityYPreAlarmValue(String obliguityYPreAlarmValue) {
         ObliguityYPreAlarmValue = obliguityYPreAlarmValue;
     }
 
@@ -224,27 +224,27 @@ public class XLRegisterRequest {
         BatteryPreAlarmValue = batteryPreAlarmValue;
     }
 
-    public Float getWeightAlarmValue() {
+    public String getWeightAlarmValue() {
         return WeightAlarmValue;
     }
 
-    public void setWeightAlarmValue(Float weightAlarmValue) {
+    public void setWeightAlarmValue(String weightAlarmValue) {
         WeightAlarmValue = weightAlarmValue;
     }
 
-    public Float getObliguityXAlarmValue() {
+    public String getObliguityXAlarmValue() {
         return ObliguityXAlarmValue;
     }
 
-    public void setObliguityXAlarmValue(Float obliguityXAlarmValue) {
+    public void setObliguityXAlarmValue(String obliguityXAlarmValue) {
         ObliguityXAlarmValue = obliguityXAlarmValue;
     }
 
-    public Float getObliguityYAlarmValue() {
+    public String getObliguityYAlarmValue() {
         return ObliguityYAlarmValue;
     }
 
-    public void setObliguityYAlarmValue(Float obliguityYAlarmValue) {
+    public void setObliguityYAlarmValue(String obliguityYAlarmValue) {
         ObliguityYAlarmValue = obliguityYAlarmValue;
     }
 
