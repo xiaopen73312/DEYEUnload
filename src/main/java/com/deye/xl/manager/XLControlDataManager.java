@@ -27,4 +27,5 @@ public class XLControlDataManager {
         xlControlDataRepository.upModifyServer(ModifyServer, SendFlag, hxzFactory, hxzId);
     }
 
+
 }

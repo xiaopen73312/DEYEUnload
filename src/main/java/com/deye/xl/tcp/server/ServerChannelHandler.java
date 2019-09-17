@@ -364,9 +364,11 @@ public class ServerChannelHandler extends SimpleChannelInboundHandler<Object> {
                         String ModifyServer = xlControlData.getModifyServer();
                         String GetFlag = xlControlData.getGetFlag();
                         String SendFlag = xlControlData.getSendFlag();
+                        //
                         if (GetFlag.equals("1") || ModifyServer.equals("1")) {
                             Result = "*$" + HxzFactory + "$" + HxzId + '$' + ProtocolVer + '$' + '9'
                                     + "$@";
+
                         } else if (SendFlag.equals("1")) {
                             //if DataBaseFlag = 1 是否存公司数据库  then  pXL_ControlData
                             String DataBaseFlag = "1"; //存公司数据库
@@ -412,7 +414,6 @@ public class ServerChannelHandler extends SimpleChannelInboundHandler<Object> {
                                         .format("%.3d", Float.valueOf(
                                                 xlControlData.getObliguityYAlarmValue()) * 100);
 
-//
 //                                Weight1Zero:=Format5_100(Weight1Zero);
 //                                Weight2Zero:=Format5_100(Weight2Zero);
 //                                ObliguityXZero:=Format5_100(ObliguityXZero);
@@ -505,27 +506,6 @@ public class ServerChannelHandler extends SimpleChannelInboundHandler<Object> {
                                             HxzId);
                             log.info("upXLRunTimeSql  set  RunTime {}", RTime);
 
-//                            XLRealtimeData xlRealtimeDataNew = new XLRealtimeData(HxzFactory, HxzId,
-//                                    projectid,
-//                                    LoginData_row_id, RTime,
-//                                    xlRealtimeDataRequest.getWeight1(),
-//                                    xlRealtimeDataRequest.getWeight2(),
-//                                    xlRealtimeDataRequest.getWeight(),
-//                                    xlRealtimeDataRequest.getWeightPercent(),
-//                                    xlRealtimeDataRequest.getObliguityX(),
-//                                    xlRealtimeDataRequest.getObliguityY(),
-//                                    xlRealtimeDataRequest.getObliguity(),
-//                                    xlRealtimeDataRequest.getBatteryPercent(),
-//                                    xlRealtimeDataRequest.getWeight1Status(),
-//                                    xlRealtimeDataRequest.getWeight2Status(),
-//                                    xlRealtimeDataRequest.getObliguityXStatus(),
-//                                    xlRealtimeDataRequest.getObliguityYStatus(),
-//                                    xlRealtimeDataRequest.getWireless1Status(),
-//                                    xlRealtimeDataRequest.getWireless2Status(),
-//                                    xlRealtimeDataRequest.getGpsStatus(),
-//                                    xlRealtimeDataRequest.getBatteryStatus());
-//                            xlRealtimeDataManager.save(xlRealtimeDataNew);
-//                            log.info("xlRealtimeDataManager.save");
                             xlRealtimeDataManager.saveSql(HxzFactory, HxzId,
                                     projectid,
                                     LoginData_row_id, RTime,
@@ -644,20 +624,6 @@ public class ServerChannelHandler extends SimpleChannelInboundHandler<Object> {
                         BigDecimal Projectid = towerCrane.getProject_id();
                         BigDecimal LoginData_row_id = towerCrane.getLoginData_row_id();
 
-//                        XLAlarmData xlAlarmData = new XLAlarmData();
-//                        xlAlarmData.setHxzFactory(HxzFactory);
-//                        xlAlarmData.setHxzId(HxzId);
-//                        xlAlarmData.setStartTime(StartTime);
-//                        xlAlarmData.setEndTime(EndTime);
-//                        xlAlarmData.setAlarmType(Integer.valueOf(AlarmType));
-//                        xlAlarmData.setMaxValue(Float.valueOf(MaxValue));
-//                        xlAlarmData.setMaxValuePercent(MaxValuePercent);
-//                        xlAlarmData.setProjectid(Projectid.intValue());
-//                        xlAlarmData.setLoginData_row_id(LoginData_row_id);
-//
-//                        xlAlarmDataManager.save(xlAlarmData);
-//                        log.info("xlAlarmDataManager.save HxzFactory={},HxzId={}", HxzFactory,
-//                                HxzId);
                         xlAlarmDataManager.saveSql(HxzFactory,
                                 HxzId,
                                 Projectid.toString().trim(),
@@ -722,17 +688,6 @@ public class ServerChannelHandler extends SimpleChannelInboundHandler<Object> {
                         BigDecimal Projectid = towerCrane.getProject_id();
                         BigDecimal LoginData_row_id = towerCrane.getLoginData_row_id();
 
-//                        XLAlarmDataStart xlAlarmDataStart = new XLAlarmDataStart();
-//                        xlAlarmDataStart.setAlarmType(Integer.valueOf(AlarmType));
-//                        xlAlarmDataStart.setAlarmValue(Float.valueOf(AlarmValue));
-//                        xlAlarmDataStart.setHxzFactory(HxzFactory);
-//                        xlAlarmDataStart.setHxzId(HxzId);
-//                        xlAlarmDataStart.setLoginData_row_id(LoginData_row_id);
-//                        xlAlarmDataStart.setProjectid(Projectid.intValue());
-//                        xlAlarmDataStart.setStartTime(StartTime);
-//                        xlAlarmDataStartManager.save(xlAlarmDataStart);
-//                        log.info("xlAlarmDataStartManager.save HxzFactory={},HxzId={}", HxzFactory,
-//                                HxzId);
                         xlAlarmDataStartManager.saveSql(HxzFactory,
                                 HxzId,
                                 Projectid.toString().trim(),
@@ -749,6 +704,38 @@ public class ServerChannelHandler extends SimpleChannelInboundHandler<Object> {
                         log.info("Result:" + Result);
                         ctx.channel().writeAndFlush(Result).syncUninterruptibly();
                     }
+                    break;
+                case "9":
+                    log.info("9载重零漂:");
+                    XLRegisterRequest xlRegisterRequest1 = new XLRegisterRequest(HxzFactory, HxzId,
+                            ProtocolVer, cmd,
+                            strings[5], strings[6], strings[7],
+                            strings[8], strings[9], strings[10],
+                            strings[11], strings[12], strings[13],
+                            strings[14], strings[15], strings[16],
+                            strings[17], strings[18],
+                            Integer.valueOf(strings[19]), strings[20],
+                            strings[21],
+                            strings[22], Integer.valueOf(strings[23]), strings[24],
+                            strings[25], strings[26]);
+                    String Weight1Zero = strings[27];//	varchar载重1零漂
+                    String Weight2Zero = strings[28];//	varchar载重2零漂
+                    String ObliguityXZero = strings[29];// varchar倾角X零漂
+                    String ObliguityYZero = strings[30];// varchar倾角Y零漂
+
+                    chackIpData(HxzFactory, HxzId, clientIP);
+                    XLControlData xlControlData = xlControlDataManager.getEntity(HxzFactory, HxzId);
+                    xlControlData.setGetFlag("0");//还原设置标记为0
+                    xlControlData.setWeight1Zero(Weight1Zero);
+                    xlControlData.setWeight2Zero(Weight2Zero);
+                    xlControlData.setObliguityXZero(ObliguityXZero);
+                    xlControlData.setObliguityYZero(ObliguityYZero);
+                    xlControlDataManager.save(xlControlData);
+                    String Result =
+                            "*$" + HxzFactory + "$" + HxzId + '$' + ProtocolVer + '$' + cmd
+                                    + "$@";
+                    log.info("Result:" + Result);
+                    ctx.channel().writeAndFlush(Result).syncUninterruptibly();
                     break;
                 default:
                     log.info("无此命令:");
