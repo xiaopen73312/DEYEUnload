@@ -705,6 +705,23 @@ public class ServerChannelHandler extends SimpleChannelInboundHandler<Object> {
                         ctx.channel().writeAndFlush(Result).syncUninterruptibly();
                     }
                     break;
+                case "6":
+                    log.info("cmd=6 ");
+                    // pXL_SendOver
+                    chackIpData(HxzFactory, HxzId, clientIP);
+//                    UPDATE XL_ControlData SET
+//                        SendFlag = '0'
+//                    WHERE (HxzFactory = @HxzFactory) AND (HxzId = @HxzId)
+                    xlControlDataManager.upSendFlag("0", HxzFactory, HxzId);
+                    log.info(
+                            " UPDATE XL_ControlData SET   SendFlag = '0' HxzFactory={} and HxzId={}",
+                            HxzFactory, HxzId);
+                    String Result =
+                            "*$" + HxzFactory + "$" + HxzId + '$' + ProtocolVer + '$' + cmd
+                                    + "$@";
+                    log.info("Result:" + Result);
+                    ctx.channel().writeAndFlush(Result).syncUninterruptibly();
+                    break;
                 case "9":
                     log.info("9载重零漂:");
                     XLRegisterRequest xlRegisterRequest1 = new XLRegisterRequest(HxzFactory, HxzId,
@@ -724,19 +741,65 @@ public class ServerChannelHandler extends SimpleChannelInboundHandler<Object> {
                     String ObliguityYZero = strings[30];// varchar倾角Y零漂
 
                     chackIpData(HxzFactory, HxzId, clientIP);
+                    loginDataManager
+                            .upDateLoginData(xlRegisterRequest1.getHardwareVer(),
+                                    xlRegisterRequest1.getSoftwareVer(),
+                                    xlRegisterRequest1.getSimCardNo(),
+                                    HxzFactory,
+                                    HxzId, "1", 4);
+                    log.info("upDateLoginData:OnLine='1' HxzFactory:{},HxzId:{}",
+                            HxzFactory,
+                            HxzId);
+
+                    XLBaseData xlBaseDataNew = new XLBaseData(HxzFactory, HxzId,
+                            xlRegisterRequest1.getUnloaderType(),
+                            xlRegisterRequest1.getWirelessExist(),
+                            xlRegisterRequest1.getWeight2SetExist(),
+                            xlRegisterRequest1.getObliguityXExist(),
+                            xlRegisterRequest1.getObliguityYExist(),
+                            xlRegisterRequest1.getGPSExist(),
+                            xlRegisterRequest1.getWirelessExist(),
+                            xlRegisterRequest1.getWeight1Disabled(),
+                            xlRegisterRequest1.getWeight2Disabled(),
+                            xlRegisterRequest1.getObliguityXDisabled(),
+                            xlRegisterRequest1.getObliguityYDisabled(),
+                            xlRegisterRequest1.getWeightPreAlarmValue().trim(),
+                            xlRegisterRequest1.getObliguityXPreAlarmValue().trim(),
+                            xlRegisterRequest1.getObliguityYPreAlarmValue().trim(),
+                            xlRegisterRequest1.getBatteryPreAlarmValue().toString().trim(),
+                            xlRegisterRequest1.getWeightAlarmValue().trim(),
+                            xlRegisterRequest1.getObliguityXAlarmValue().trim(),
+                            xlRegisterRequest1.getObliguityYAlarmValue().trim(),
+                            xlRegisterRequest1.getBatteryAlarmValue().toString().trim());
+
+                    xlBaseDataNew.setWeight1Zero(Weight1Zero);
+                    xlBaseDataNew.setWeight2Zero(Weight2Zero);
+                    xlBaseDataNew.setObliguityXZero(ObliguityXZero);
+                    xlBaseDataNew.setObliguityYZero(ObliguityYZero);
+                    XLBaseData xlBaseData = xlBaseDataManager.getEntity(HxzFactory, HxzId);
+                    log.info("getXLbaseDate by HxzFactory={}  HxzId={}", HxzFactory, HxzId);
+                    if (NullUtil.isNotEmpty(xlBaseData)) {
+                        xlBaseDataNew.setRowId(xlBaseData.getRowId());
+                        xlBaseDataManager.save(xlBaseDataNew);
+                        log.info("update XLbaseDate by HxzFactory={}  HxzId={}", HxzFactory,
+                                HxzId);
+                    } else {
+                        xlBaseDataManager.save(xlBaseDataNew);
+                        log.info("save new XLbaseDate by HxzFactory={}  HxzId={}", HxzFactory,
+                                HxzId);
+                    }
+
                     XLControlData xlControlData = xlControlDataManager.getEntity(HxzFactory, HxzId);
                     xlControlData.setGetFlag("0");//还原设置标记为0
+                    xlControlData.setModifyServer("0");
                     xlControlData.setWeight1Zero(Weight1Zero);
                     xlControlData.setWeight2Zero(Weight2Zero);
                     xlControlData.setObliguityXZero(ObliguityXZero);
                     xlControlData.setObliguityYZero(ObliguityYZero);
                     xlControlDataManager.save(xlControlData);
-                    String Result =
-                            "*$" + HxzFactory + "$" + HxzId + '$' + ProtocolVer + '$' + cmd
-                                    + "$@";
-                    log.info("Result:" + Result);
-                    ctx.channel().writeAndFlush(Result).syncUninterruptibly();
+
                     break;
+
                 default:
                     log.info("无此命令:");
                     System.out.print("无此命令");

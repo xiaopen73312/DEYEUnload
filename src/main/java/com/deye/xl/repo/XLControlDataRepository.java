@@ -23,4 +23,12 @@ public interface XLControlDataRepository extends JpaRepository<XLControlData, Bi
             @Param("SendFlag") String SendFlag,
             @Param("hxzFactory") String hxzFactory,
             @Param("hxzId") String hxzId);
+
+    @Transactional
+    @Modifying(clearAutomatically = true)
+    @Query(value = "update XL_ControlData set  SendFlag=:SendFlag  where  HxzFactory=:hxzFactory and HxzId=:hxzId", nativeQuery = true)
+    void upSendFlag(
+            @Param("SendFlag") String SendFlag,
+            @Param("hxzFactory") String hxzFactory,
+            @Param("hxzId") String hxzId);
 }
