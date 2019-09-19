@@ -225,24 +225,24 @@ public class ServerChannelHandler extends SimpleChannelInboundHandler<Object> {
                                 xlControlData.setObliguityYDisabled(
                                         xlRegisterRequest.getObliguityYDisabled());
                                 xlControlData.setWeightPreAlarmValue(
-                                        xlRegisterRequest.getWeightPreAlarmValue().toString()
+                                        xlRegisterRequest.getWeightPreAlarmValue()
                                                 .trim());
                                 xlControlData.setObliguityXPreAlarmValue(
-                                        xlRegisterRequest.getObliguityXPreAlarmValue().toString()
+                                        xlRegisterRequest.getObliguityXPreAlarmValue()
                                                 .trim());
                                 xlControlData.setObliguityYPreAlarmValue(
-                                        xlRegisterRequest.getObliguityYPreAlarmValue().toString()
+                                        xlRegisterRequest.getObliguityYPreAlarmValue()
                                                 .trim());
                                 xlControlData.setBatteryPreAlarmValue(
                                         xlRegisterRequest.getBatteryPreAlarmValue().toString()
                                                 .trim());
                                 xlControlData.setWeightAlarmValue(
-                                        xlRegisterRequest.getWeightAlarmValue().toString().trim());
+                                        xlRegisterRequest.getWeightAlarmValue().trim());
                                 xlControlData.setObliguityXAlarmValue(
-                                        xlRegisterRequest.getObliguityXAlarmValue().toString()
+                                        xlRegisterRequest.getObliguityXAlarmValue()
                                                 .trim());
                                 xlControlData.setObliguityYAlarmValue(
-                                        xlRegisterRequest.getObliguityYAlarmValue().toString()
+                                        xlRegisterRequest.getObliguityYAlarmValue()
                                                 .trim());
                                 xlControlData.setBatteryAlarmValue(
                                         xlRegisterRequest.getBatteryAlarmValue().toString().trim());
@@ -364,6 +364,8 @@ public class ServerChannelHandler extends SimpleChannelInboundHandler<Object> {
                         String ModifyServer = xlControlData.getModifyServer();
                         String GetFlag = xlControlData.getGetFlag();
                         String SendFlag = xlControlData.getSendFlag();
+                        ReturnServerIp = xlControlData.getServerIp().trim();
+                        ReturnServerPort = xlControlData.getServerPort().trim();
                         //
                         if (GetFlag.equals("1") || ModifyServer.equals("1")) {
                             Result = "*$" + HxzFactory + "$" + HxzId + '$' + ProtocolVer + '$' + '9'
@@ -393,34 +395,47 @@ public class ServerChannelHandler extends SimpleChannelInboundHandler<Object> {
                                 if (Integer.valueOf(NoWorkInterval) < 10) {
                                     NoWorkInterval = "0" + NoWorkInterval;
                                 }
-                                String WeightPreAlarmValue = String
-                                        .format("%.3d", Float.valueOf(
-                                                xlControlData.getWeightPreAlarmValue()) * 100);
-                                String ObliguityXPreAlarmValue = String
-                                        .format("%.3d", Float.valueOf(
-                                                xlControlData.getObliguityXPreAlarmValue()) * 100);
-                                String ObliguityYPreAlarmValue = String
-                                        .format("%.3d", Float.valueOf(
-                                                xlControlData.getObliguityYPreAlarmValue()) * 100);
+                                String WeightPreAlarmValue = SubStr
+                                        .getStr(xlControlData.getWeightPreAlarmValue());
 
-                                String WeightAlarmValue = String
-                                        .format("%.3d", Float.valueOf(
-                                                xlControlData.getWeightAlarmValue()) * 100);
-                                String ObliguityXAlarmValue = String
-                                        .format("%.3d", Float.valueOf(
-                                                xlControlData.getObliguityXAlarmValue()) * 100);
+                                String ObliguityXPreAlarmValue = SubStr
+                                        .getStr(
+                                                xlControlData.getObliguityXPreAlarmValue());
+                                String ObliguityYPreAlarmValue = SubStr
+                                        .getStr(
+                                                xlControlData.getObliguityYPreAlarmValue());
 
-                                String ObliguityYAlarmValue = String
-                                        .format("%.3d", Float.valueOf(
-                                                xlControlData.getObliguityYAlarmValue()) * 100);
+                                String WeightAlarmValue = SubStr
+                                        .getStr(
+                                                xlControlData.getWeightAlarmValue());
+                                String ObliguityXAlarmValue = SubStr
+                                        .getStr(
+                                                xlControlData.getObliguityXAlarmValue());
+
+                                String ObliguityYAlarmValue = SubStr
+                                        .getStr(
+                                                xlControlData.getObliguityYAlarmValue());
 
 //                                Weight1Zero:=Format5_100(Weight1Zero);
 //                                Weight2Zero:=Format5_100(Weight2Zero);
 //                                ObliguityXZero:=Format5_100(ObliguityXZero);
 //                                ObliguityYZero:=Format5_100(ObliguityYZero);
                                 String Weight1Zero = xlControlData.getWeight1Zero();
+
                                 String ObliguityXZero = xlControlData.getObliguityXZero();
+
                                 String ObliguityYZero = xlControlData.getObliguityYZero();
+
+                                xlControlDataManager.upSendFlag("0", HxzFactory, HxzId);
+                                log.info(
+                                        " UPDATE XL_ControlData SET   SendFlag = '0' HxzFactory={} and HxzId={}",
+                                        HxzFactory, HxzId);
+                                Weight1Zero = SubStr
+                                        .getStr(Weight1Zero);
+                                ObliguityXZero = SubStr
+                                        .getStr(ObliguityXZero);
+                                ObliguityYZero = SubStr
+                                        .getStr(ObliguityYZero);
                                 Result = "*$" + HxzFactory + "$" + HxzId + '$' + ProtocolVer
                                         + "$6$"
                                         +
@@ -454,7 +469,7 @@ public class ServerChannelHandler extends SimpleChannelInboundHandler<Object> {
                                         + "$" + DateUtils.getHHStr() + "$" + DateUtils
                                         .getMMStr() + "$"
                                         + DateUtils.getSSStr() + "$";
-                                Result = Result + '$' + ReturnServerIp + '$' + ReturnServerPort;
+                                Result = Result + ReturnServerIp + '$' + ReturnServerPort;
                                 Result = Result + '$' + Weight1Zero + '$' + ObliguityXZero + '$'
                                         + ObliguityYZero;
                                 Result = Result + "$@";
