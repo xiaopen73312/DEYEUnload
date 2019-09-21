@@ -421,21 +421,30 @@ public class ServerChannelHandler extends SimpleChannelInboundHandler<Object> {
 //                                ObliguityXZero:=Format5_100(ObliguityXZero);
 //                                ObliguityYZero:=Format5_100(ObliguityYZero);
                                 String Weight1Zero = xlControlData.getWeight1Zero();
-
+                                String Weight1ZeroF = "+";//符号位
+                                if (Float.valueOf(Weight1Zero) < 0) {
+                                    Weight1ZeroF = "-";
+                                }
                                 String ObliguityXZero = xlControlData.getObliguityXZero();
-
+                                String ObliguityXZeroF = "+";//符号位
+                                if (Float.valueOf(ObliguityXZero) < 0) {
+                                    ObliguityXZeroF = "-";
+                                }
                                 String ObliguityYZero = xlControlData.getObliguityYZero();
-
+                                String ObliguityYZeroF = "+";//符号位
+                                if (Float.valueOf(ObliguityYZero) < 0) {
+                                    ObliguityYZeroF = "-";
+                                }
                                 xlControlDataManager.upSendFlag("0", HxzFactory, HxzId);
                                 log.info(
                                         " UPDATE XL_ControlData SET   SendFlag = '0' HxzFactory={} and HxzId={}",
                                         HxzFactory, HxzId);
                                 Weight1Zero = SubStr
-                                        .getStr(Weight1Zero);
+                                        .getStrF(Weight1Zero);
                                 ObliguityXZero = SubStr
-                                        .getStr(ObliguityXZero);
+                                        .getStrF(ObliguityXZero);
                                 ObliguityYZero = SubStr
-                                        .getStr(ObliguityYZero);
+                                        .getStrF(ObliguityYZero);
                                 Result = "*$" + HxzFactory + "$" + HxzId + '$' + ProtocolVer
                                         + "$6$"
                                         +
@@ -470,8 +479,9 @@ public class ServerChannelHandler extends SimpleChannelInboundHandler<Object> {
                                         .getMMStr() + "$"
                                         + DateUtils.getSSStr() + "$";
                                 Result = Result + ReturnServerIp + '$' + ReturnServerPort;
-                                Result = Result + '$' + Weight1Zero + '$' + ObliguityXZero + '$'
-                                        + ObliguityYZero;
+                                Result = Result + '$' + Weight1ZeroF + Weight1Zero + '$'
+                                        + ObliguityXZeroF + ObliguityXZero + '$'
+                                        + ObliguityYZeroF + ObliguityYZero;
                                 Result = Result + "$@";
                             } else {
                                 Result = "*$" + HxzFactory + "$" + HxzId + '$' + ProtocolVer + '$'

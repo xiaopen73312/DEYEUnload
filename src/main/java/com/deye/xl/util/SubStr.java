@@ -41,4 +41,28 @@ public class SubStr {
         return reStr;
     }
 
+    //补五位
+    public static String getStrF(String str) {
+        Float strInt = Float.valueOf(str) * 100;
+//        strInt.intValue();
+        str = String.valueOf(Math.abs(strInt.intValue()));
+        String reStr = str;
+        if (reStr.length() == 1) {
+            reStr = "0000" + reStr;
+
+        }
+        if (reStr.length() == 2) {
+            reStr = "000" + reStr;
+
+        }
+        if (reStr.length() == 3) {
+            reStr = "00" + reStr;
+
+        }
+        if (reStr.length() == 4) {
+            reStr = "0" + reStr;
+
+        }
+        return reStr;
+    }
 }
