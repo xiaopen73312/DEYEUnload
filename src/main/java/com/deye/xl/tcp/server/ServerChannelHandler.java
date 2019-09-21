@@ -425,6 +425,12 @@ public class ServerChannelHandler extends SimpleChannelInboundHandler<Object> {
                                 if (Float.valueOf(Weight1Zero) < 0) {
                                     Weight1ZeroF = "-";
                                 }
+
+                                String Weight2Zero = xlControlData.getWeight2Zero();
+                                String Weight2ZeroF = "+";//符号位
+                                if (Float.valueOf(Weight2Zero) < 0) {
+                                    Weight2ZeroF = "-";
+                                }
                                 String ObliguityXZero = xlControlData.getObliguityXZero();
                                 String ObliguityXZeroF = "+";//符号位
                                 if (Float.valueOf(ObliguityXZero) < 0) {
@@ -441,6 +447,8 @@ public class ServerChannelHandler extends SimpleChannelInboundHandler<Object> {
                                         HxzFactory, HxzId);
                                 Weight1Zero = SubStr
                                         .getStrF(Weight1Zero);
+                                Weight2Zero = SubStr
+                                        .getStrF(Weight2Zero);
                                 ObliguityXZero = SubStr
                                         .getStrF(ObliguityXZero);
                                 ObliguityYZero = SubStr
@@ -480,6 +488,7 @@ public class ServerChannelHandler extends SimpleChannelInboundHandler<Object> {
                                         + DateUtils.getSSStr() + "$";
                                 Result = Result + ReturnServerIp + '$' + ReturnServerPort;
                                 Result = Result + '$' + Weight1ZeroF + Weight1Zero + '$'
+                                        + Weight2ZeroF + Weight2Zero + '$'
                                         + ObliguityXZeroF + ObliguityXZero + '$'
                                         + ObliguityYZeroF + ObliguityYZero;
                                 Result = Result + "$@";
