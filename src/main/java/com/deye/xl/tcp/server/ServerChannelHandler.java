@@ -422,7 +422,8 @@ public class ServerChannelHandler extends SimpleChannelInboundHandler<Object> {
 //                                ObliguityYZero:=Format5_100(ObliguityYZero);
                                 String Weight1Zero = xlControlData.getWeight1Zero();
                                 String Weight1ZeroF = "+";//符号位
-                                if (Float.valueOf(Weight1Zero) < 0) {
+                                if (NullUtil.isNotEmpty(Weight1Zero)
+                                        && Float.valueOf(Weight1Zero) < 0) {
                                     Weight1ZeroF = "-";
                                 }
 
@@ -433,12 +434,14 @@ public class ServerChannelHandler extends SimpleChannelInboundHandler<Object> {
                                 }
                                 String ObliguityXZero = xlControlData.getObliguityXZero();
                                 String ObliguityXZeroF = "+";//符号位
-                                if (Float.valueOf(ObliguityXZero) < 0) {
+                                if (NullUtil.isNotEmpty(ObliguityXZero)
+                                        && Float.valueOf(ObliguityXZero) < 0) {
                                     ObliguityXZeroF = "-";
                                 }
                                 String ObliguityYZero = xlControlData.getObliguityYZero();
                                 String ObliguityYZeroF = "+";//符号位
-                                if (Float.valueOf(ObliguityYZero) < 0) {
+                                if (NullUtil.isNotEmpty(ObliguityYZero)
+                                        && Float.valueOf(ObliguityYZero) < 0) {
                                     ObliguityYZeroF = "-";
                                 }
                                 xlControlDataManager.upSendFlag("0", HxzFactory, HxzId);
@@ -928,7 +931,7 @@ public class ServerChannelHandler extends SimpleChannelInboundHandler<Object> {
                 String HxzFactory = ctx.channel().attr(KEY_HXZFACTORY_ID).get();
                 if (NullUtil.isNotEmpty(HxzId)) {
                     ipDataManager.pDownlineVF(HxzFactory, HxzId);
-                    log.info("call pDownlineVF");
+                    log.info("call pDownlineVF HxzId={}", HxzId);
                 }
 
                 ctx.disconnect();
