@@ -429,7 +429,8 @@ public class ServerChannelHandler extends SimpleChannelInboundHandler<Object> {
 
                                 String Weight2Zero = xlControlData.getWeight2Zero();
                                 String Weight2ZeroF = "+";//符号位
-                                if (Float.valueOf(Weight2Zero) < 0) {
+                                if (NullUtil.isNotEmpty(Weight2Zero)
+                                        && Float.valueOf(Weight2Zero) < 0) {
                                     Weight2ZeroF = "-";
                                 }
                                 String ObliguityXZero = xlControlData.getObliguityXZero();
@@ -448,14 +449,33 @@ public class ServerChannelHandler extends SimpleChannelInboundHandler<Object> {
                                 log.info(
                                         " UPDATE XL_ControlData SET   SendFlag = '0' HxzFactory={} and HxzId={}",
                                         HxzFactory, HxzId);
-                                Weight1Zero = SubStr
-                                        .getStrF(Weight1Zero);
-                                Weight2Zero = SubStr
-                                        .getStrF(Weight2Zero);
-                                ObliguityXZero = SubStr
-                                        .getStrF(ObliguityXZero);
-                                ObliguityYZero = SubStr
-                                        .getStrF(ObliguityYZero);
+                                if (NullUtil.isNotEmpty(Weight1Zero)) {
+                                    Weight1Zero = SubStr
+                                            .getStrF(Weight1Zero);
+                                } else {
+                                    Weight1Zero = "00000";
+                                }
+
+                                if (NullUtil.isNotEmpty(Weight2Zero)) {
+                                    Weight2Zero = SubStr
+                                            .getStrF(Weight2Zero);
+                                } else {
+                                    Weight2Zero = "00000";
+                                }
+
+                                if (NullUtil.isNotEmpty(ObliguityXZero)) {
+                                    ObliguityXZero = SubStr
+                                            .getStrF(ObliguityXZero);
+                                } else {
+                                    ObliguityXZero = "00000";
+                                }
+                                if (NullUtil.isNotEmpty(ObliguityYZero)) {
+                                    ObliguityYZero = SubStr
+                                            .getStrF(ObliguityYZero);
+                                } else {
+                                    ObliguityYZero = "00000";
+                                }
+
                                 Result = "*$" + HxzFactory + "$" + HxzId + '$' + ProtocolVer
                                         + "$6$"
                                         +
