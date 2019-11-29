@@ -24,6 +24,22 @@ public class XLAlarmDataStart {
     Integer AlarmType;//int 报警类型
     Float AlarmValue;//float 报警值
 
+    public XLAlarmDataStart() {
+
+    }
+
+    public XLAlarmDataStart(String hxzFactory, String hxzId, Integer projectid,
+            BigDecimal loginData_row_id, String startTime, Integer alarmType,
+            Float alarmValue) {
+        HxzFactory = hxzFactory;
+        HxzId = hxzId;
+        Projectid = projectid;
+        LoginData_row_id = loginData_row_id;
+        StartTime = startTime;
+        AlarmType = alarmType;
+        AlarmValue = alarmValue;
+    }
+
     public BigDecimal getRowId() {
         return rowId;
     }

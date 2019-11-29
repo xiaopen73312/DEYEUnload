@@ -10,6 +10,7 @@ import com.deye.xl.entity.RuntimeData;
 import com.deye.xl.entity.TowerCrane;
 import com.deye.xl.entity.XLBaseData;
 import com.deye.xl.entity.XLControlData;
+import com.deye.xl.entity.XLRealtimeData;
 import com.deye.xl.httpService.BaiduClient;
 import com.deye.xl.manager.GpsDataManager;
 import com.deye.xl.manager.IpDataManager;
@@ -21,6 +22,7 @@ import com.deye.xl.manager.XLAlarmDataStartManager;
 import com.deye.xl.manager.XLBaseDataManager;
 import com.deye.xl.manager.XLControlDataManager;
 import com.deye.xl.manager.XLRealtimeDataManager;
+import com.deye.xl.postBody.SSZZPost;
 import com.deye.xl.request.XLRealtimeDataRequest;
 import com.deye.xl.request.XLRegisterRequest;
 import com.deye.xl.util.DateUtils;
@@ -78,6 +80,9 @@ public class ServerChannelHandler extends SimpleChannelInboundHandler<Object> {
     XLAlarmDataManager xlAlarmDataManager;
     @Autowired
     XLAlarmDataStartManager xlAlarmDataStartManager;
+
+    @Autowired
+    SSZZPost sszzPost;//深圳智造
     /**
      * 拿到传过来的msg数据，开始处理
      */
@@ -265,6 +270,15 @@ public class ServerChannelHandler extends SimpleChannelInboundHandler<Object> {
                                     NoWorkInterval = "0" + NoWorkInterval;
                                 }
                             }
+                            if ("SZZZ".equals(HxzFactory)) {
+                                sszzPost.LoginDataUnloadingPlatform(HxzFactory, HxzId,
+                                        xlRegisterRequest.getHardwareVer(),
+                                        xlRegisterRequest.getSoftwareVer(),
+                                        xlRegisterRequest.getSimCardNo().trim(), "4");
+                                log.info("sszzPost.LoginDataUnloadingPlatform");
+                                sszzPost.BaseDataUnloadingPlatform(xlBaseDataNew);
+                                log.info("sszzPost.BaseDataUnloadingPlatform");
+                            }
 
                             String Result =
                                     "*$" + HxzFactory + "$" + HxzId + "$" + ProtocolVer
@@ -318,6 +332,8 @@ public class ServerChannelHandler extends SimpleChannelInboundHandler<Object> {
                             AttributeKey<String> KEY_HXZ_ID = AttributeKey.valueOf("HxzId");
                             ctx.channel().attr(KEY_HXZ_ID).set(HxzId);
                             ctx.channel().writeAndFlush(Result).syncUninterruptibly();
+
+
                         } else if (NullUtil.isNotEmpty(loginDataAll)) {
                             //有数据没有备份时更新 LoginData GpsData
                             loginDataManager.upDateLoginData(xlRegisterRequest.getHardwareVer(),
@@ -563,6 +579,26 @@ public class ServerChannelHandler extends SimpleChannelInboundHandler<Object> {
                                             HxzId);
                             log.info("upXLRunTimeSql  set  RunTime {}", RTime);
 
+                            XLRealtimeData xlRealtimeData = new XLRealtimeData(HxzFactory, HxzId,
+                                    projectid,
+                                    LoginData_row_id, RTime,
+                                    xlRealtimeDataRequest.getWeight1(),
+                                    xlRealtimeDataRequest.getWeight2(),
+                                    xlRealtimeDataRequest.getWeight(),
+                                    xlRealtimeDataRequest.getWeightPercent(),
+                                    xlRealtimeDataRequest.getObliguityX(),
+                                    xlRealtimeDataRequest.getObliguityY(),
+                                    xlRealtimeDataRequest.getObliguity(),
+                                    xlRealtimeDataRequest.getBatteryPercent(),
+                                    xlRealtimeDataRequest.getWeight1Status(),
+                                    xlRealtimeDataRequest.getWeight2Status(),
+                                    xlRealtimeDataRequest.getObliguityXStatus(),
+                                    xlRealtimeDataRequest.getObliguityYStatus(),
+                                    xlRealtimeDataRequest.getWireless1Status(),
+                                    xlRealtimeDataRequest.getWireless2Status(),
+                                    xlRealtimeDataRequest.getGpsStatus(),
+                                    xlRealtimeDataRequest.getBatteryStatus());
+
                             xlRealtimeDataManager.saveSql(HxzFactory, HxzId,
                                     projectid,
                                     LoginData_row_id, RTime,
@@ -582,8 +618,21 @@ public class ServerChannelHandler extends SimpleChannelInboundHandler<Object> {
                                     xlRealtimeDataRequest.getWireless2Status(),
                                     xlRealtimeDataRequest.getGpsStatus(),
                                     xlRealtimeDataRequest.getBatteryStatus());
+                            log.info("xlRealtimeDataManager.saveSql");
+                            RuntimeData runtimeData = runtimeDataManager
+                                    .getIpByHxzIdAndHxzFactory(HxzFactory, HxzId);
+
+                            if ("SZZZ".equals(HxzFactory)) {
+                                sszzPost.RealtimeData(xlRealtimeData);
+                                log.info("sszzPost.RealtimeData");
+                                sszzPost
+                                        .RuntimeData(HxzFactory, HxzId, runtimeData.getOnlineTime(),
+                                                runtimeData.getOnlineTime(),
+                                                runtimeData.getRunTime());
+                                log.info("sszzPost.RuntimeData");
+                            }
                         }
-                        log.info("xlRealtimeDataManager.saveSql");
+
                         String Resultt =
                                 "*$" + HxzFactory + "$" + HxzId + '$' + ProtocolVer + '$' + cmd
                                         + "$@";
@@ -653,6 +702,11 @@ public class ServerChannelHandler extends SimpleChannelInboundHandler<Object> {
                                 DateUtils.getCurrentTime());
                         log.info("call pGpsDataVF Latitude={},Longitude={} ", Latitude, Longitude);
                     }
+
+                    if ("SZZZ".equals(HxzFactory)) {
+                        sszzPost.GpsData(HxzFactory, HxzId, Latitude, Longitude);
+                        log.info("sszzPost GpsData Latitude={},Longitude={} ", Latitude, Longitude);
+                    }
                     String Resultd =
                             "*$" + HxzFactory + "$" + HxzId + '$' + ProtocolVer + '$' + cmd + "$@";
                     log.info("Result:" + Resultd);
@@ -697,6 +751,16 @@ public class ServerChannelHandler extends SimpleChannelInboundHandler<Object> {
                                 "*$" + HxzFactory + "$" + HxzId + '$' + ProtocolVer + '$' + cmd
                                         + "$@";
                         log.info("Result:" + Result);
+                        if ("SZZZ".equals(HxzFactory)) {
+                            sszzPost.AlarmDataUnloadingPlatform(HxzFactory,
+                                    HxzId,
+                                    StartTime,
+                                    EndTime,
+                                    AlarmType,
+                                    MaxValue,
+                                    MaxValuePercent);
+                            log.info("sszzPost AlarmDataUnloadingPlatform");
+                        }
                         ctx.channel().writeAndFlush(Result).syncUninterruptibly();
                     }
                     break;
@@ -759,6 +823,14 @@ public class ServerChannelHandler extends SimpleChannelInboundHandler<Object> {
                                 "*$" + HxzFactory + "$" + HxzId + '$' + ProtocolVer + '$' + cmd
                                         + "$@";
                         log.info("Result:" + Result);
+                        if ("SZZZ".equals(HxzFactory)) {
+                            sszzPost.AlarmStartUnloadingPlatform(HxzFactory,
+                                    HxzId,
+                                    StartTime,
+                                    AlarmType,
+                                    AlarmValue);
+                            log.info("sszzPost AlarmStartUnloadingPlatform");
+                        }
                         ctx.channel().writeAndFlush(Result).syncUninterruptibly();
                     }
                     break;

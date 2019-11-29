@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface RuntimeDataRepository extends JpaRepository<RuntimeData, BigDecimal> {
 
-    @Query(value = "SELECT *  FROM RuntimeData where  HxzFactory=:hxzFactory and HxzId=:hxzId", nativeQuery = true)
+    @Query(value = "SELECT top 1 *  FROM RuntimeData where  HxzFactory=:hxzFactory and HxzId=:hxzId order by DownlineTime desc", nativeQuery = true)
     RuntimeData getRuntimeDataByHxzFactory(@Param("hxzFactory") String hxzFactory,
             @Param("hxzId") String hxzId);
 
