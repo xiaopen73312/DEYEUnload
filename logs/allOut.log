@@ -5340,3 +5340,92 @@ Caused by: javax.persistence.NonUniqueResultException: query did not return a un
 14:55:51.452 INFO  org.springframework.boot.StartupInfoLogger 59 logStarted - Started XlApplication in 5.408 seconds (JVM running for 7.021)
 14:55:52.340 INFO  com.deye.xl.manager.SetOnlineManager 44 setALLDownline - call pDownlineVF hxzFactory=SZZZ,hxzId=19111692
 14:55:53.305 INFO  com.deye.xl.tcp.server.NettyTcpServer 69 start - Netty tcp server start success, port = 7068
+09:00:42.714 INFO  org.springframework.boot.StartupInfoLogger 50 logStarting - Starting XlApplication on 20181112-151055 with PID 230624 (D:\DEYEUnload\target\classes started by admin in D:\DEYEUnload)
+09:00:42.720 INFO  org.springframework.boot.SpringApplication 646 logStartupProfileInfo - No active profile set, falling back to default profiles: default
+09:00:43.395 INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate 126 registerRepositoriesIn - Bootstrapping Spring Data repositories in DEFAULT mode.
+09:00:43.481 INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate 182 registerRepositoriesIn - Finished Spring Data repository scanning in 78ms. Found 13 repository interfaces.
+09:00:43.748 INFO  org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker 330 postProcessAfterInitialization - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$225ecc1d] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+09:00:44.044 INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer 90 initialize - Tomcat initialized with port(s): 8068 (http)
+09:00:44.056 INFO  org.apache.juli.logging.DirectJDKLog 173 log - Initializing ProtocolHandler ["http-nio-8068"]
+09:00:44.064 INFO  org.apache.juli.logging.DirectJDKLog 173 log - Starting service [Tomcat]
+09:00:44.065 INFO  org.apache.juli.logging.DirectJDKLog 173 log - Starting Servlet engine: [Apache Tomcat/9.0.21]
+09:00:44.160 INFO  org.apache.juli.logging.DirectJDKLog 173 log - Initializing Spring embedded WebApplicationContext
+09:00:44.161 INFO  org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext 283 prepareWebApplicationContext - Root WebApplicationContext: initialization completed in 1391 ms
+09:00:44.377 INFO  com.zaxxer.hikari.HikariDataSource 110 getConnection - HikariPool-1 - Starting...
+09:00:45.407 INFO  com.zaxxer.hikari.HikariDataSource 123 getConnection - HikariPool-1 - Start completed.
+09:00:45.457 INFO  org.hibernate.jpa.internal.util.LogHelper 31 logPersistenceUnitInformation - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+09:00:45.531 INFO  org.hibernate.Version 46 logVersion - HHH000412: Hibernate Core {5.3.10.Final}
+09:00:45.532 INFO  org.hibernate.cfg.Environment 213 <clinit> - HHH000206: hibernate.properties not found
+09:00:45.675 INFO  org.hibernate.annotations.common.reflection.java.JavaReflectionManager 49 <clinit> - HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+09:00:45.800 INFO  org.hibernate.dialect.Dialect 157 <init> - HHH000400: Using dialect: org.hibernate.dialect.SQLServer2008Dialect
+09:00:48.008 INFO  org.springframework.orm.jpa.AbstractEntityManagerFactoryBean 415 buildNativeEntityManagerFactory - Initialized JPA EntityManagerFactory for persistence unit 'default'
+09:00:49.436 INFO  org.springframework.scheduling.concurrent.ExecutorConfigurationSupport 171 initialize - Initializing ExecutorService 'applicationTaskExecutor'
+09:00:49.468 WARN  org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration 225 openEntityManagerInViewInterceptor - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+09:00:49.636 INFO  org.apache.juli.logging.DirectJDKLog 173 log - Starting ProtocolHandler ["http-nio-8068"]
+09:00:49.650 INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer 202 start - Tomcat started on port(s): 8068 (http) with context path ''
+09:00:49.652 INFO  org.springframework.boot.StartupInfoLogger 59 logStarted - Started XlApplication in 7.307 seconds (JVM running for 10.319)
+09:00:50.827 INFO  com.deye.xl.manager.SetOnlineManager 44 setALLDownline - call pDownlineVF hxzFactory=SZJX,hxzId=19111692
+09:00:51.182 INFO  com.deye.xl.manager.SetOnlineManager 44 setALLDownline - call pDownlineVF hxzFactory=DEYE,hxzId=19111692
+09:00:52.088 INFO  com.deye.xl.tcp.server.NettyTcpServer 69 start - Netty tcp server start success, port = 7068
+16:49:15.487 INFO  org.springframework.boot.StartupInfoLogger 50 logStarting - Starting XlApplication on 20181112-151055 with PID 229708 (D:\DEYEUnload\target\classes started by admin in D:\DEYEUnload)
+16:49:15.493 INFO  org.springframework.boot.SpringApplication 646 logStartupProfileInfo - No active profile set, falling back to default profiles: default
+16:49:16.142 INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate 126 registerRepositoriesIn - Bootstrapping Spring Data repositories in DEFAULT mode.
+16:49:16.228 INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate 182 registerRepositoriesIn - Finished Spring Data repository scanning in 78ms. Found 13 repository interfaces.
+16:49:16.506 INFO  org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker 330 postProcessAfterInitialization - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$d506341e] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+16:49:16.807 INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer 90 initialize - Tomcat initialized with port(s): 8068 (http)
+16:49:16.820 INFO  org.apache.juli.logging.DirectJDKLog 173 log - Initializing ProtocolHandler ["http-nio-8068"]
+16:49:16.829 INFO  org.apache.juli.logging.DirectJDKLog 173 log - Starting service [Tomcat]
+16:49:16.830 INFO  org.apache.juli.logging.DirectJDKLog 173 log - Starting Servlet engine: [Apache Tomcat/9.0.21]
+16:49:16.922 INFO  org.apache.juli.logging.DirectJDKLog 173 log - Initializing Spring embedded WebApplicationContext
+16:49:16.923 INFO  org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext 283 prepareWebApplicationContext - Root WebApplicationContext: initialization completed in 1392 ms
+16:49:17.106 INFO  com.zaxxer.hikari.HikariDataSource 110 getConnection - HikariPool-1 - Starting...
+16:49:18.099 INFO  com.zaxxer.hikari.HikariDataSource 123 getConnection - HikariPool-1 - Start completed.
+16:49:18.148 INFO  org.hibernate.jpa.internal.util.LogHelper 31 logPersistenceUnitInformation - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+16:49:18.206 INFO  org.hibernate.Version 46 logVersion - HHH000412: Hibernate Core {5.3.10.Final}
+16:49:18.207 INFO  org.hibernate.cfg.Environment 213 <clinit> - HHH000206: hibernate.properties not found
+16:49:18.339 INFO  org.hibernate.annotations.common.reflection.java.JavaReflectionManager 49 <clinit> - HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+16:49:18.461 INFO  org.hibernate.dialect.Dialect 157 <init> - HHH000400: Using dialect: org.hibernate.dialect.SQLServer2008Dialect
+16:49:19.339 INFO  org.springframework.orm.jpa.AbstractEntityManagerFactoryBean 415 buildNativeEntityManagerFactory - Initialized JPA EntityManagerFactory for persistence unit 'default'
+16:49:20.444 INFO  org.springframework.scheduling.concurrent.ExecutorConfigurationSupport 171 initialize - Initializing ExecutorService 'applicationTaskExecutor'
+16:49:20.494 WARN  org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration 225 openEntityManagerInViewInterceptor - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+16:49:20.695 INFO  org.apache.juli.logging.DirectJDKLog 173 log - Starting ProtocolHandler ["http-nio-8068"]
+16:49:20.711 INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer 202 start - Tomcat started on port(s): 8068 (http) with context path ''
+16:49:20.713 INFO  org.springframework.boot.StartupInfoLogger 59 logStarted - Started XlApplication in 5.588 seconds (JVM running for 7.617)
+16:49:21.888 INFO  com.deye.xl.tcp.server.NettyTcpServer 69 start - Netty tcp server start success, port = 7068
+16:50:28.426 INFO  com.deye.xl.tcp.server.ServerChannelHandler 947 channelActive - 已建立新连接Established connection with the remote client.:127.0.0.1[id: 0xd94291ac, L:/127.0.0.1:7068 - R:/127.0.0.1:52216]
+16:51:41.390 INFO  com.deye.xl.tcp.server.ServerChannelHandler 99 channelRead0 - 收到Received message:&$DEYE$19000090$V4.0$0$2$1$0$1$0$1$0$0$0$0$0$0.90$1.80$1.80$30$1.00$2.00$2.00$20$DY-QCE-C01-H-V2.02$DY-QCE-C01-S-V1.00$13755555555$!
+16:51:41.390 INFO  com.deye.xl.tcp.server.ServerChannelHandler 102 channelRead0 - 是否满意isFormat(&!):true
+16:51:41.391 INFO  com.deye.xl.tcp.server.ServerChannelHandler 117 channelRead0 - 设备类型VerNum:4
+16:51:41.391 INFO  com.deye.xl.tcp.server.ServerChannelHandler 119 channelRead0 - cmd:0
+16:51:41.568 INFO  com.deye.xl.tcp.server.ServerChannelHandler 124 channelRead0 - select loginData where HxzFactory=DEYE,HxzId=19000090
+16:51:41.568 INFO  com.deye.xl.tcp.server.ServerChannelHandler 129 channelRead0 - online_flag=0,isBA=true
+16:51:41.569 INFO  com.deye.xl.tcp.server.ServerChannelHandler 133 channelRead0 - 注册:
+16:51:41.816 INFO  com.deye.xl.tcp.server.ServerChannelHandler 1065 chackIpData - upDateIp:127.000.000.001
+16:51:41.884 INFO  com.deye.xl.tcp.server.ServerChannelHandler 169 channelRead0 - getXLbaseDate by HxzFactory=DEYE  HxzId=19000090
+16:51:42.133 INFO  com.deye.xl.tcp.server.ServerChannelHandler 173 channelRead0 - update XLbaseDate by HxzFactory=DEYE  HxzId=19000090
+16:51:42.383 INFO  com.deye.xl.tcp.server.ServerChannelHandler 189 channelRead0 - upDateLoginData:OnLine='1' HxzFactory:DEYE,HxzId:19000090
+16:51:42.596 INFO  com.deye.xl.tcp.server.ServerChannelHandler 199 channelRead0 - insert NEW INTO RunTimeData 
+16:51:42.647 INFO  com.deye.xl.tcp.server.ServerChannelHandler 207 channelRead0 - select  xlControlData HxzFactory:DEYE,HxzId:19000090
+16:51:42.932 INFO  com.deye.xl.tcp.server.ServerChannelHandler 256 channelRead0 - UPdate  xlControlData HxzFactory:DEYE,HxzId:19000090
+16:51:42.934 INFO  com.deye.xl.tcp.server.ServerChannelHandler 327 channelRead0 - Result:*$DEYE$19000090$V4.0$0$2$1$0$1$0$1$0$0$0$0$0$090$180$180$30$100$200$200$20$10$10$10$19$12$05$16$51$42$042.096.131.210$7068$@
+16:51:56.569 INFO  com.deye.xl.tcp.server.ServerChannelHandler 947 channelActive - 已建立新连接Established connection with the remote client.:127.0.0.1[id: 0x244dd043, L:/127.0.0.1:7068 - R:/127.0.0.1:52241]
+16:52:12.815 INFO  com.deye.xl.tcp.server.ServerChannelHandler 99 channelRead0 - 收到Received message:&$DEYE$19000090$V4.0$2$!
+16:52:12.815 INFO  com.deye.xl.tcp.server.ServerChannelHandler 102 channelRead0 - 是否满意isFormat(&!):true
+16:52:12.815 INFO  com.deye.xl.tcp.server.ServerChannelHandler 117 channelRead0 - 设备类型VerNum:4
+16:52:12.815 INFO  com.deye.xl.tcp.server.ServerChannelHandler 119 channelRead0 - cmd:2
+16:52:12.893 INFO  com.deye.xl.tcp.server.ServerChannelHandler 124 channelRead0 - select loginData where HxzFactory=DEYE,HxzId=19000090
+16:52:12.894 INFO  com.deye.xl.tcp.server.ServerChannelHandler 129 channelRead0 - online_flag=1,isBA=true
+16:52:12.895 INFO  com.deye.xl.tcp.server.ServerChannelHandler 372 channelRead0 - 心跳:
+16:52:13.105 INFO  com.deye.xl.tcp.server.ServerChannelHandler 1065 chackIpData - upDateIp:127.000.000.001
+16:52:13.151 INFO  com.deye.xl.tcp.server.ServerChannelHandler 379 channelRead0 - GET XLControlData by HxzFactory=DEYE,HxzId=19000090 
+16:52:13.152 INFO  com.deye.xl.tcp.server.ServerChannelHandler 546 channelRead0 - 心跳Result:*$DEYE$19000090$V4.0$2$@
+16:54:42.956 INFO  com.deye.xl.tcp.server.ServerChannelHandler 1017 userEventTriggered - Client: /127.0.0.1:52216 ALL_IDLE 总超时
+16:54:43.606 INFO  com.deye.xl.tcp.server.ServerChannelHandler 1026 userEventTriggered - call pDownlineVF HxzId=19000090
+16:54:43.700 INFO  com.deye.xl.tcp.server.ServerChannelHandler 970 channelInactive - call pDownlineVF
+16:54:43.701 INFO  com.deye.xl.tcp.server.ServerChannelHandler 972 channelInactive - 断开连接Disconnected with the remote client.:127.0.0.1[id: 0xd94291ac, L:/127.0.0.1:7068 ! R:/127.0.0.1:52216]HxzId=19000090
+16:55:13.154 INFO  com.deye.xl.tcp.server.ServerChannelHandler 1017 userEventTriggered - Client: /127.0.0.1:52241 ALL_IDLE 总超时
+16:55:13.155 INFO  com.deye.xl.tcp.server.ServerChannelHandler 972 channelInactive - 断开连接Disconnected with the remote client.:127.0.0.1[id: 0x244dd043, L:/127.0.0.1:7068 ! R:/127.0.0.1:52241]HxzId=null

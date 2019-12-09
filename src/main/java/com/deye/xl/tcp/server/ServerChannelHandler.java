@@ -396,6 +396,9 @@ public class ServerChannelHandler extends SimpleChannelInboundHandler<Object> {
                                 if (Integer.valueOf(HeartBeatInterval) < 10) {
                                     HeartBeatInterval = "0" + HeartBeatInterval;
                                 }
+                                if ("0".equals(HeartBeatInterval)) {
+                                    HeartBeatInterval = "00";
+                                }
                                 String BatteryPreAlarmValue = xlControlData
                                         .getBatteryPreAlarmValue();
                                 if (Integer.valueOf(BatteryPreAlarmValue) < 10) {
