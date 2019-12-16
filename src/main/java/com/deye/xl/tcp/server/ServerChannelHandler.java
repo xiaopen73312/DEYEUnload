@@ -279,7 +279,23 @@ public class ServerChannelHandler extends SimpleChannelInboundHandler<Object> {
                                 sszzPost.BaseDataUnloadingPlatform(xlBaseDataNew);
                                 log.info("sszzPost.BaseDataUnloadingPlatform");
                             }
-
+                            //补0
+                            Integer BatteryPreAlarmValue = xlRegisterRequest
+                                    .getBatteryPreAlarmValue();
+                            String BatteryPreAlarmValueS = "00";
+                            if (BatteryPreAlarmValue < 10) {
+                                BatteryPreAlarmValueS = "0" + BatteryPreAlarmValue;
+                            } else {
+                                BatteryPreAlarmValueS = BatteryPreAlarmValue.toString();
+                            }
+                            //补0
+                            Integer BatteryAlarmValue = xlRegisterRequest.getBatteryAlarmValue();
+                            String BatteryAlarmValueS = "00";
+                            if (BatteryAlarmValue < 10) {
+                                BatteryAlarmValueS = "0" + BatteryAlarmValue;
+                            } else {
+                                BatteryAlarmValueS = BatteryAlarmValue.toString();
+                            }
                             String Result =
                                     "*$" + HxzFactory + "$" + HxzId + "$" + ProtocolVer
                                             + "$0$"
@@ -303,7 +319,7 @@ public class ServerChannelHandler extends SimpleChannelInboundHandler<Object> {
                                             + SubStr
                                             .getStr(xlRegisterRequest.getObliguityYPreAlarmValue())
                                             + "$"
-                                            + xlRegisterRequest.getBatteryPreAlarmValue() + "$"
+                                            + BatteryPreAlarmValueS + "$"
                                             + SubStr.getStr(xlRegisterRequest.getWeightAlarmValue())
                                             + "$"
                                             + SubStr
@@ -312,7 +328,7 @@ public class ServerChannelHandler extends SimpleChannelInboundHandler<Object> {
                                             + SubStr
                                             .getStr(xlRegisterRequest.getObliguityYAlarmValue())
                                             + "$"
-                                            + xlRegisterRequest.getBatteryAlarmValue() + "$"
+                                            + BatteryAlarmValueS + "$"
                                             + HeartBeatInterval + "$" + WorkInterval + "$"
                                             + NoWorkInterval + "$"
                                             + DateUtils.getYearStr() + "$"
