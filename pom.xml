@@ -93,6 +93,13 @@
       <artifactId>httpclient</artifactId>
       <version>4.5.3</version>
     </dependency>
+    <dependency>
+      <groupId>com.yzw.ibuild</groupId>
+      <artifactId>ibuild-open-sdk</artifactId>
+      <version>1.0-SNAPSHOT</version>
+      <scope>system</scope>
+      <systemPath>${basedir}/src/main/resources/libs/ibuild-open-sdk-1.0.5-SNAPSHOT.jar</systemPath>
+    </dependency>
   </dependencies>
 
   <build>
