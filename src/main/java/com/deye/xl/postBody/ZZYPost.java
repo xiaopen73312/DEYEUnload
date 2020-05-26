@@ -5,6 +5,7 @@ import com.deye.xl.entity.GpsData;
 import com.deye.xl.entity.XLBaseData;
 import com.deye.xl.manager.GpsDataManager;
 import com.deye.xl.request.XLRealtimeDataRequest;
+import com.deye.xl.util.NullUtil;
 import com.yzw.ibuild.open.api.IbuildOpenClient;
 import com.yzw.ibuild.open.api.model.unloadingplatform.UnloadingPlatformDeviceParams;
 import com.yzw.ibuild.open.api.model.unloadingplatform.UnloadingPlatformLiveData;
@@ -50,8 +51,11 @@ public class ZZYPost {
         UnloadingPlatformDeviceParamsUploadRequest request = new UnloadingPlatformDeviceParamsUploadRequest();
         UnloadingPlatformDeviceParams unloadingPlatformDeviceParams = new UnloadingPlatformDeviceParams();
         unloadingPlatformDeviceParams.setDeviceId(HxzFactory + HxzId);
-        unloadingPlatformDeviceParams.setLongitude(Double.valueOf(Longitude));//设备所在经度
-        unloadingPlatformDeviceParams.setLatitude(Double.valueOf(Latitude));//设备所在纬度
+        if (NullUtil.isNotEmpty(Longitude) && NullUtil.isNotEmpty(Latitude)) {
+            unloadingPlatformDeviceParams.setLongitude(Double.valueOf(Longitude));//设备所在经度
+            unloadingPlatformDeviceParams.setLatitude(Double.valueOf(Latitude));//设备所在纬度
+        }
+
         unloadingPlatformDeviceParams.setStdLoadWeight(LoadWeight);//标准载重，单位：吨，支持2位小数
         unloadingPlatformDeviceParams.setMaxDipAngleX(MaxDipAngleX);//最大倾角X，单位：度，支持1位小数
         unloadingPlatformDeviceParams.setMaxDipAngleY(MaxDipAngleY);//最大倾角Y，单位：度，支持1位小数
