@@ -126,6 +126,8 @@ public class RestTemplateConfig {
     public HttpClient httpClient() {
         PoolingHttpClientConnectionManager connectionManager = new PoolingHttpClientConnectionManager();
         connectionManager.setMaxTotal(Integer.parseInt(poolMaxTotal));
+        // 同路由的并发数
+        connectionManager.setDefaultMaxPerRoute(200); // 每个主机的并发
         return HttpClientBuilder.create().setConnectionManager(connectionManager).build();
     }
 

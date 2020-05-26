@@ -23,6 +23,7 @@ import com.deye.xl.manager.XLBaseDataManager;
 import com.deye.xl.manager.XLControlDataManager;
 import com.deye.xl.manager.XLRealtimeDataManager;
 import com.deye.xl.postBody.SSZZPost;
+import com.deye.xl.postBody.ZZYPost;
 import com.deye.xl.request.XLRealtimeDataRequest;
 import com.deye.xl.request.XLRegisterRequest;
 import com.deye.xl.util.DateUtils;
@@ -83,6 +84,8 @@ public class ServerChannelHandler extends SimpleChannelInboundHandler<Object> {
 
     @Autowired
     SSZZPost sszzPost;//深圳智造
+    @Autowired
+    ZZYPost zzyPost;//筑智云
     /**
      * 拿到传过来的msg数据，开始处理
      */
@@ -278,6 +281,12 @@ public class ServerChannelHandler extends SimpleChannelInboundHandler<Object> {
                                 log.info("sszzPost.LoginDataUnloadingPlatform");
                                 sszzPost.BaseDataUnloadingPlatform(xlBaseDataNew);
                                 log.info("sszzPost.BaseDataUnloadingPlatform");
+                            }
+
+                            if ("SDBG".equals(HxzFactory)) {
+
+                                zzyPost.BaseDataUnloadingPlatform(xlBaseDataNew);
+                                log.info("zzyPost.BaseDataUnloadingPlatform");
                             }
                             //补0
                             Integer BatteryPreAlarmValue = xlRegisterRequest
@@ -649,6 +658,9 @@ public class ServerChannelHandler extends SimpleChannelInboundHandler<Object> {
                                                 runtimeData.getOnlineTime(),
                                                 runtimeData.getRunTime());
                                 log.info("sszzPost.RuntimeData");
+                            }
+                            if ("SDBG".equals(HxzFactory)) {
+                                zzyPost.RealtimeDataElevator(xlRealtimeDataRequest);
                             }
                         }
 
