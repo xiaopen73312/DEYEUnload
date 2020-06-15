@@ -28,6 +28,14 @@ public class DateUtils {
 
     }
 
+    public static String getSSZZDate() {
+        Calendar cal = Calendar.getInstance();
+        Date date = cal.getTime();
+//  2017/05/05-01:01:34:364
+        return new SimpleDateFormat("yyyyMMddHHmmssSSS").format(date);
+
+//        return new SimpleDateFormat("YYYYMMddHHmmss.zzz").format(new Date());
+    }
     /**
      * 获取当前的时间yyyy-MM-dd HH:mm:ss 2019-06-07 18:33:21
      */

@@ -22,6 +22,7 @@ import com.deye.xl.manager.XLAlarmDataStartManager;
 import com.deye.xl.manager.XLBaseDataManager;
 import com.deye.xl.manager.XLControlDataManager;
 import com.deye.xl.manager.XLRealtimeDataManager;
+import com.deye.xl.postBody.GLDPost;
 import com.deye.xl.postBody.SSZZPost;
 import com.deye.xl.postBody.ZZYPost;
 import com.deye.xl.request.XLRealtimeDataRequest;
@@ -82,6 +83,8 @@ public class ServerChannelHandler extends SimpleChannelInboundHandler<Object> {
     @Autowired
     XLAlarmDataStartManager xlAlarmDataStartManager;
 
+    @Autowired
+    GLDPost gldPost;//关联达
     @Autowired
     SSZZPost sszzPost;//深圳智造
     @Autowired
@@ -662,6 +665,10 @@ public class ServerChannelHandler extends SimpleChannelInboundHandler<Object> {
                             if ("SDBG".equals(HxzFactory)) {
                                 zzyPost.RealtimeDataElevator(xlRealtimeDataRequest);
                             }
+                            if ("GLD1".equals(HxzFactory)) {
+                                gldPost.postElvatorWorkdata(xlRealtimeDataRequest);
+                            }
+
                         }
 
                         String Resultt =
